@@ -12,11 +12,13 @@ import { BillingRecordComponent } from '../billing-record/billing-record.compone
 import { BillingRecordFormComponent } from '../billing-record-form/billing-record-form.component';
 import { InvoiceFormComponent } from '../invoice-form/invoice-form.component';
 import { InvoiceComponent } from '../invoice/invoice.component';
+import { CompanyInfoComponent } from '../company-info/company-info.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
   { path: 'company',  component: CompanyComponent, canActivate: [AuthGuard] },
+  { path: 'company/id', component: CompanyInfoComponent, canActivate: [AuthGuard]},
   { path: 'company/edit/:id', component: CompanyFormComponent, canActivate: [AuthGuard] },
   { path: 'company/add', component: CompanyFormComponent, canActivate: [AuthGuard] },
   { path: 'user',  component: UserComponent, canActivate: [AuthGuard] },

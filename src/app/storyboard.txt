@@ -1,0 +1,166 @@
+1.
+Value statement
+as a user, I want to be able to navigate to the make a payment page so that I can track payments made on an invoice
+
+Acceptance Criteria
+* I should be able to arrive at a payment page from invoice
+
+**DEV NOTES**
+backend - need an endpoint for the make-payments page
+
+2.
+Value statement
+as a user, I want to have a functional make payment button so that I can get to the make a payment page
+Acceptance Criteria
+* make a payment should be grayed out for paid invoices
+* have make payment button that leads to make payments page
+
+**DEV NOTES**
+* have radio buttons to select an invoice
+
+3.
+Value statement
+as a user, I want to be able to fill out a form to make a payment so that the form can be submitted
+
+Acceptance Criteria
+* There is a form on the make payments page including:
+    * client field
+    * invoice Id
+    * method type
+    * total remaining
+    * Payment amount
+    * submit button
+
+**DEV NOTES**
+* client, invoice id, and total remaining are read only.
+* frontend only
+* validate inputs (html5 validation)
+
+4.
+Value statement
+as a user, I want to have the static fields of my make a payments field be populated so that there are less errors in field entry
+
+Acceptance Criteria
+* have following fields in make payment populated with data for correct invoice as defined by radio button:
+    * client
+    * invoice id
+    * total remaining
+
+**DEV NOTES**
+* get them from that db yo
+
+
+5.
+Value statement
+as a user, I want to be able to submit a payment so that I can track invoice status payment history.
+Acceptance Criteria
+* be able to select method type
+* gives error when payment is more than remaining
+* form submission correctly updates db 
+
+**DEV NOTES**
+* db should be correctly updated for both invoices and payments tables
+    * if invoice is fully paid, paid_on = now
+* if you don't fill out things correctly you can't submit (get an error)
+* sanitize that input
+* backend
+
+6.
+Value statement
+as a user, I want to duplicate an invoice so that I spend less time working
+Acceptance Criteria
+* have a duplicate button that copies an invoice and updates the db 
+
+**DEV NOTES**
+* increment the id
+* set the created on date to today
+
+7.
+Value statement - Spike
+as a user, I want a pdfify button so that I can easily print an invoice
+Acceptance Criteria
+* have a pdfify button that pdfifies selected invoice
+
+**DEV NOTES**
+* find json to pdf library
+
+
+8.
+Value statement
+as a user, I want to be able to see the status of an invoice so that I can track payments
+Acceptance Criteria
+* have a balance and paid on column added to the invoices page
+* have a separate table for the paid invoices
+
+**DEV NOTES**
+* 
+
+9.
+Value statement
+as a user, I want to have invoices sorted between paid and unpaid so that I can track invoice status easily
+Acceptance Criteria
+* paid and unpaid invoices correctly in their separate tables
+
+**DEV NOTES**
+* if paid on date is null, it's not paid (will be updated when final payment is made)
+
+10. 
+Value statement
+As a user, I want to be able to see information on specific companies so that I can track their payment history/ invoice status
+Acceptance Criteria
+* have outstanding invoices, paid invoices, and other analytics on specific company in company payments page
+    * line chart of total outstanding balance
+    * pie of payment methods
+
+**DEV NOTES**
+* frontend
+
+11.
+Value statement
+as a user, I want company specific analytics to display correct data so that I can make informed decisions
+Acceptance Criteria
+* have graphs display correct data 
+* have invoices correctly split into two categories - outstanding & paid
+**DEV NOTES**
+* filter invoices based on company clicked on
+* backend
+
+12.
+Value statement
+as a user, I want to be able to click on a company in the company page to navigate to their company payment page so that I can easily navigate to their invoices
+Acceptance Criteria
+* have working link going from a company on the companies page to their company specific page.
+
+13.
+Value statement
+as a user, I want to see analytics for all clients invoice/payment history so that I can get an overview of what is going on in the company
+Acceptance Criteria
+* have a graph for total outstanding balance over time based on invoice balances
+* have a pie of payment types
+
+14. 
+Value statement
+as a user, I want to arrive at a more explanatory, attractive landing page so that I can be informed on invoicify and excited to use it.
+Acceptance Criteria
+* have better pictures/graphics
+* have more detailed explanation on what invoicify is/decisions
+
+15.
+Value statement
+as a developer, I'd like to be able to set up this project more efficiently so that I can get at it quicker
+Acceptance Criteria
+have documentation on steps needed to get the backend and frontend running in Windows added to a readme
+
+16.
+Value statement
+as a user, I want to be able to edit and delete billing records so that I can more effectively manage the products offered
+Acceptance Criteria
+* have an edit and delete button that updates the billing records 
+
+17. 
+Value statement
+as a user, I want to be able to select multiple billing records for one invoice/company so that I can conglomerate invoices
+Acceptance Criteria
+* be able to select multiple billing records in the case that their company differs from the client
+DEV NOTES
+* filter billing records based on the company selected 
