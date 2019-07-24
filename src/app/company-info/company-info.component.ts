@@ -22,10 +22,12 @@ export class CompanyInfoComponent implements OnInit {
     private route: ActivatedRoute
     ) {}
 
-  ngOnInit() { this.getInvoices(); }
+    ngOnInit() { 
+    this.getInvoices(this.route.params['value']['id']); 
+  }
 
-  getInvoices() {
-    this.dataService.getRecords("invoice")
+  getInvoices(id: number) {
+    this.dataService.getRecords("invoice/company/"+id)
       .subscribe(
         results => this.invoices = results,
         error =>  this.errorMessage = <any>error);
