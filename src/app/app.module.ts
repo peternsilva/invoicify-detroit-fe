@@ -24,6 +24,8 @@ import { BillingRecordComponent } from './billing-record/billing-record.componen
 import { BillingRecordFormComponent } from './billing-record-form/billing-record-form.component';
 import { InvoiceFormComponent } from './invoice-form/invoice-form.component';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
     BillingRecordFormComponent,
     InvoiceFormComponent,
     InvoiceComponent,
+    PaymentFormComponent,
   ],
   imports: [
     BrowserModule,
