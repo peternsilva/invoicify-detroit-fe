@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../data.service'
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component'
 import { fadeInAnimation } from '../animations/fade-in.animation';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-invoice',
@@ -16,7 +17,10 @@ export class CompanyInfoComponent implements OnInit {
   successMessage: string;
   invoices: any[];
 
-  constructor (private dataService: DataService) {}
+  constructor (
+    private dataService: DataService,
+    private route: ActivatedRoute
+    ) {}
 
   ngOnInit() { this.getInvoices(); }
 
