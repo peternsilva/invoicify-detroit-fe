@@ -34,13 +34,7 @@ export class DataService {
 
     getRecordsById(endpoint: string, id:number): Observable<any[]> {
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
-        console.log(apiUrl);
-
-
-
-        // console.log(this.http.get(apiUrl, this.options)
-        // .map(this.extractData)
-        // .catch(this.handleError));
+            
 
         return this.http.get(apiUrl, this.options)
             .map(this.extractData)

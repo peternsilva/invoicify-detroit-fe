@@ -39,43 +39,43 @@ export class InvoiceFormComponent implements OnInit {
   getRecordByCompany(event: any){
 
 
-    // selectChangeHandler (event: any) {
-    //   //update the ui
-    //   this.selectedDay = event.target.value;
-    // }
-    console.log(event);
-
-    console.log(event.target)
-
-
-    console.log(event.target.value)
-
 
     let temp = event.target.value
+
+    
 
     let colon = temp.indexOf(":")
 
 
     let id = event.target.value.slice(colon+2,)
 
-    console.log(id)
+   
 
+    if(id != "null"){
+    
 
-    // console.log(event.target.ng-reflect-ng-value);
+    
 
     this.dataService.getRecordsById("billing-record",id)
       .subscribe(
         results => this.specificBillingRecords = results,
         error => this.errorMessage = <any>error);
-
-    // console.log(this.specificBillingRecords);
+      }
+      else{
+        this.dataService.getRecordsById("billing-record",-1)
+      .subscribe(
+        results => this.specificBillingRecords = results,
+        error => this.errorMessage = <any>error);
+      }
+      
+   
 
 
   }
 
 
   trackByFn(index, item) {
-    return index; // or item.id
+    return index; 
   }
 
   getBillingRecords() {
