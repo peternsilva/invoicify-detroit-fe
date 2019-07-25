@@ -20,6 +20,8 @@ export class BillingRecordFormComponent implements OnInit {
   errorMessage: string;
   companies: any[];
 
+  billingRecord: object;
+
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
@@ -35,6 +37,12 @@ export class BillingRecordFormComponent implements OnInit {
       .subscribe(
         companies => this.companies = companies,
         error =>  this.errorMessage = <any>error);
+  }
+
+  getRecordForEdit(){
+    this.route.params
+      .switchMap((params: Params) => this.dataService.getBillingRecord("billing-record", +params['id']))
+      .subscribe(billingRecord => this.billingRecord = billingRecord);
   }
 
   saveBillingRecord(billingRecordForm: NgForm) {
