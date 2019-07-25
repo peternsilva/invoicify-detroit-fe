@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild }      from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location }               from '@angular/common';
 import { NgForm } from '@angular/forms';
 
 import { DataService } from '../data.service'
@@ -20,43 +20,46 @@ export class PaymentFormComponent implements OnInit {
 
   successMessage: string;
   errorMessage: string;
-  billingRecords: any[];
-  companies: any[];
+  invoices: any[];
+
+  invoice: object;
 
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
     private location: Location
-  ) { }
+  ) {}
 
-  ngOnInit() { 
-    this.getBillingRecords(); 
-    this.getCompanies();
+
+  getRecordForEdit(){
+    this.route.params
+      .switchMap((params: Params) => this.dataService.getRecord("invoice", +params['id']))
+      .subscribe(invoice => this.invoice = invoice);
   }
 
-  getBillingRecords() {
-    this.dataService.getRecords("billing-record")
-      .subscribe(
-        results => this.billingRecords = results,
-        error => this.errorMessage = <any>error);
+  ngOnInit() {
+    this.getInvoices();
+    this.route.params
+      .subscribe((params: Params) => {
+        (+params['id']) ? this.getRecordForEdit() : null;
+
+      });
   }
 
-  getCompanies() {
-    this.dataService.getRecords("company")
+  getInvoices() {
+    this.dataService.getRecords("invoice")
       .subscribe(
-        companies => this.companies = companies,
+        results => this.invoices = results,
         error =>  this.errorMessage = <any>error);
   }
 
-  savePayment(paymentForm: NgForm) {
-    let endpoint = "payment/" + paymentForm.value.client;
-    delete(paymentForm.value.client)
-    this.dataService.addRecord(endpoint, paymentForm.value)
-      .subscribe(
-        company => this.successMessage = "Record added successfully",
-        error => this.errorMessage = <any>error);
-    this.paymentForm.reset()
-
+  savePayment(paymentForm: NgForm){
+    if(typeof paymentForm.value.id === "number"){
+      this.dataService.editRecord("invoice", paymentForm.value, paymentForm.value.id)
+          .subscribe(
+            invoice => this.successMessage = "Record updated successfully",
+            error =>  this.errorMessage = <any>error);
+    }
   }
 
   ngAfterViewChecked() {
@@ -75,7 +78,7 @@ export class PaymentFormComponent implements OnInit {
     let form = this.paymentForm.form;
 
     for (let field in this.formErrors) {
-      // clear previous error message (if any)
+      // clear previous eIrror message (if any)
       this.formErrors[field] = '';
       const control = form.get(field);
 
@@ -89,14 +92,15 @@ export class PaymentFormComponent implements OnInit {
   }
 
   formErrors = {
-    'paymentDescription': ''
+    'name': ''
   };
 
   validationMessages = {
-    'paymentDescription': {
-      'required': 'Description name is required.',
-      'minlength': 'Description name must be at least 5 characters long.',
-      'maxlength': 'Description name cannot be more than 30 characters long.'
+    'name': {
+      'required': 'Payment name is required.',
+      'minlength': 'Payment name must be at least 2 characters long.',
+      'maxlength': 'Payment name cannot be more than 30 characters long.'
     }
   };
+
 }

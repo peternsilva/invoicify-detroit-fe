@@ -30,6 +30,9 @@
           <td>{{invoice.lineItems.length}}</td>
           <td>{{invoice.createdBy.username}}</td>
           <td>{{invoice.createdOn}}</td>
+          <td class="text-center">
+            <a class="btn btn-primary" [routerLink]="['/invoice/payment/', invoice.id]">Pay</a>&nbsp;
+          </td>
         </tr>
       </tbody>
     </table>

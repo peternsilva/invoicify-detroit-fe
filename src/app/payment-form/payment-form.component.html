@@ -15,35 +15,29 @@
 
   <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 
-  <form (ngSubmit)="savePayment(paymentForm)" #paymentForm="ngForm" class="form-horizontal">
+  <form novalidate (ngSubmit)="savePayment(paymentForm)" #paymentForm="ngForm" class="form-horizontal">
+    <input [ngModel]="invoice?.company.name" ngModel #invoice_company_name="ngModel" type="hidden" name="id">
     <div class="form-group">
-      <label for="client" class="col-sm-2 control-label">Client</label>
+      <label for="name" class="col-sm-2 control-label">Company Name</label>
       <div class="col-sm-10">
-        <select required [ngModel]="null" ngModel #client="ngModel" class="form-control" id="client" name="client">
-          <option [ngValue]="null">-- Select Client --</option>
-          <option *ngFor="let company of companies" [ngValue]="company.id">
-            {{ company.name }}
-          </option>
-        </select>
+        <input [disabled]="true" [ngModel]="invoice.company.name" ngModel #name="ngModel" type="text" class="form-control" id="id" name="name" placeholder="Company id" required minlength="2" maxlength="30">
       </div>
-    </div>  <div class="form-group">
-      <label for="paymentDescription" class="col-sm-2 control-label">Invoice ID</label>
+    </div> 
+    <input [ngModel]="invoice?.id" ngModel #invoice_id="ngModel" type="hidden" name="id">
+    <div class="form-group">
+      <label for="name" class="col-sm-2 control-label">Company Name</label>
       <div class="col-sm-10">
-        <input ngModel #paymentDescription="ngModel" type="text" class="form-control" id="paymentDescription" name="paymentDescription"
-          placeholder="Description" required minlength="5" maxlength="30">
-        <span *ngIf="formErrors.paymentDescription" class="text-danger">
-          {{ formErrors.paymentDescription }}
-        </span>
+        <input [disabled]="true" [ngModel]="invoice?.id" ngModel #name="ngModel" type="text" class="form-control" id="id" name="id" placeholder="Company id" required minlength="2" maxlength="30">
       </div>
     </div>
     <div class="form-group">
       <label for="client" class="col-sm-2 control-label">Method Type</label>
       <div class="col-sm-10">
-        <select required [ngModel]="null" ngModel #client="ngModel" class="form-control" id="client" name="client">
-          <option [ngValue]="null">-- Select Client --</option>
-          <option *ngFor="let company of companies" [ngValue]="company.id">
-            {{ company.name }}
-          </option>
+        <select class="form-control"  ng-model="view.activeResource.ValueType">
+          <option [ngValue]="null">-- Select Payment Method --</option>
+          <option value="0">Credit Card</option>
+          <option value="2" >Check</option>
+          <option value="1">Cash</option>
         </select>
       </div>
     </div>
