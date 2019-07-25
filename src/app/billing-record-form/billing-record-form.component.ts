@@ -30,6 +30,10 @@ export class BillingRecordFormComponent implements OnInit {
 
   ngOnInit(){
     this.getCompanies()
+    this.route.params
+      .subscribe((params: Params) => {
+        (+params['id']) ? this.getRecordForEdit() : null;
+      });
   }
 
   getCompanies() {
@@ -43,6 +47,9 @@ export class BillingRecordFormComponent implements OnInit {
     this.route.params
       .switchMap((params: Params) => this.dataService.getBillingRecord("billing-record", +params['id']))
       .subscribe(billingRecord => this.billingRecord = billingRecord);
+
+
+      // console.log(this.billingRecord);
   }
 
   saveBillingRecord(billingRecordForm: NgForm) {
