@@ -30,6 +30,23 @@
         <input [disabled]="true" [ngModel]="invoice?.id" ngModel #name="ngModel" type="text" class="form-control" id="id" name="id" placeholder="Company id" required minlength="2" maxlength="30">
       </div>
     </div>
+
+    <div class="form-group">
+      <label for="name" class="col-sm-2 control-label">Balance</label>
+      <div class="col-sm-10">
+        <input [disabled]="true" [ngModel]="invoice?.balance" ngModel #balance="ngModel" type="text" class="form-control" id="balance" name="balance" placeholder="Company id" required minlength="2" maxlength="30">
+      </div>
+    </div> 
+    <div class="form-group">
+      <label for="paymentAmount" class="col-sm-2 control-label">Payment Amount</label>
+      <div class="col-sm-10">
+        <input ngModel #paymentDescription="ngModel" type="number" class="form-control" id="paymentDescription" name="paymentDescription"
+          placeholder="e.g. 100.00" required minlength="3" maxlength="30" required pattern="^(\d*\.)?\d+$">
+        <span *ngIf="formErrors.paymentDescription" class="text-danger">
+          {{ formErrors.paymentDescription }}
+        </span>
+      </div>
+    </div>
     <div class="form-group">
       <label for="client" class="col-sm-2 control-label">Method Type</label>
       <div class="col-sm-10">
@@ -39,26 +56,6 @@
           <option value="2" >Check</option>
           <option value="1">Cash</option>
         </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="paymentDescription" class="col-sm-2 control-label">Total Remaning</label>
-      <div class="col-sm-10">
-        <input ngModel #paymentDescription="ngModel" type="text" class="form-control" id="paymentDescription" name="paymentDescription"
-          placeholder="Description" required minlength="5" maxlength="30">
-        <span *ngIf="formErrors.paymentDescription" class="text-danger">
-          {{ formErrors.paymentDescription }}
-        </span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="paymentDescription" class="col-sm-2 control-label">Payment Amount</label>
-      <div class="col-sm-10">
-        <input ngModel #paymentDescription="ngModel" type="text" class="form-control" id="paymentDescription" name="paymentDescription"
-          placeholder="Description" required minlength="5" maxlength="30">
-        <span *ngIf="formErrors.paymentDescription" class="text-danger">
-          {{ formErrors.paymentDescription }}
-        </span>
       </div>
     </div>
     <div class="form-group">

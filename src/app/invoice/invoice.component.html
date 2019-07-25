@@ -18,6 +18,7 @@
           <th>Description</th>
           <th>Client</th>
           <th>Line Items</th>
+          <th>Balance</th>
           <th>Created By</th>
           <th>Created On</th>
         </tr>
@@ -28,6 +29,7 @@
           <td>{{invoice.invoiceDescription}}</td>
           <td>{{invoice.company.name}}</td>
           <td>{{invoice.lineItems.length}}</td>
+          <td>{{invoice.balance}}</td>
           <td>{{invoice.createdBy.username}}</td>
           <td>{{invoice.createdOn}}</td>
           <td class="text-center">

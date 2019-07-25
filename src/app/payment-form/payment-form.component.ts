@@ -53,13 +53,14 @@ export class PaymentFormComponent implements OnInit {
         error =>  this.errorMessage = <any>error);
   }
 
-  savePayment(paymentForm: NgForm){
-    if(typeof paymentForm.value.id === "number"){
-      this.dataService.editRecord("invoice", paymentForm.value, paymentForm.value.id)
-          .subscribe(
-            invoice => this.successMessage = "Record updated successfully",
-            error =>  this.errorMessage = <any>error);
-    }
+  savePayment(paymentForm : NgForm){
+     console.log(paymentForm);
+    let endpoint = "invoice/payment/" + paymentForm.value.id
+    this.dataService.addRecord(endpoint, paymentForm.value)
+    .subscribe(
+      result => this.successMessage = "Record added successfully",
+      error => this.errorMessage = <any>error
+    );
   }
 
   ngAfterViewChecked() {
@@ -76,7 +77,7 @@ export class PaymentFormComponent implements OnInit {
 
   onValueChanged(data?: any) {
     let form = this.paymentForm.form;
-
+    
     for (let field in this.formErrors) {
       // clear previous eIrror message (if any)
       this.formErrors[field] = '';
