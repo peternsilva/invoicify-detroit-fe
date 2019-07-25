@@ -22,6 +22,7 @@ export class InvoiceFormComponent implements OnInit {
   errorMessage: string;
   billingRecords: any[];
   companies: any[];
+  specificBillingRecords: any[];
 
   constructor(
     private dataService: DataService,
@@ -32,6 +33,49 @@ export class InvoiceFormComponent implements OnInit {
   ngOnInit() { 
     this.getBillingRecords(); 
     this.getCompanies();
+    // this.getRecordByCompany();
+  }
+
+  getRecordByCompany(event: any){
+
+
+    // selectChangeHandler (event: any) {
+    //   //update the ui
+    //   this.selectedDay = event.target.value;
+    // }
+    console.log(event);
+
+    console.log(event.target)
+
+
+    console.log(event.target.value)
+
+
+    let temp = event.target.value
+
+    let colon = temp.indexOf(":")
+
+
+    let id = event.target.value.slice(colon+2,)
+
+    console.log(id)
+
+
+    // console.log(event.target.ng-reflect-ng-value);
+
+    this.dataService.getRecordsById("billing-record",id)
+      .subscribe(
+        results => this.specificBillingRecords = results,
+        error => this.errorMessage = <any>error);
+
+    // console.log(this.specificBillingRecords);
+
+
+  }
+
+
+  trackByFn(index, item) {
+    return index; // or item.id
   }
 
   getBillingRecords() {
