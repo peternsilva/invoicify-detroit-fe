@@ -32,4 +32,6 @@ export class CompanyInfoComponent implements OnInit {
         results => this.invoices = results,
         error =>  this.errorMessage = <any>error);
   }
+
+
 }
