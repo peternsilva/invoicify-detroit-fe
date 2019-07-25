@@ -20,7 +20,7 @@
     <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Company Name</label>
       <div class="col-sm-10">
-        <input [disabled]="true" [ngModel]="invoice.company.name" ngModel #name="ngModel" type="text" class="form-control" id="id" name="name" placeholder="Company id" required minlength="2" maxlength="30">
+        <input [disabled]="true" [ngModel]="invoice?.company.name" ngModel #name="ngModel" type="text" class="form-control" id="id" name="name" placeholder="Company id" required minlength="2" maxlength="30">
       </div>
     </div> 
     <input [ngModel]="invoice?.id" ngModel #invoice_id="ngModel" type="hidden" name="id">
