@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'user/add', component: UserFormComponent, canActivate: [AuthGuard] },
   { path: 'billing-record',  component: BillingRecordComponent, canActivate: [AuthGuard] },
   { path: 'billing-record/add', component: BillingRecordFormComponent, canActivate: [AuthGuard] },
+  {path: 'billing-record/edit/:id', component: BillingRecordFormComponent, canActivate: [AuthGuard]},
   { path: 'invoice/add', component: InvoiceFormComponent, canActivate: [AuthGuard] },
   { path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard] }
 ];
