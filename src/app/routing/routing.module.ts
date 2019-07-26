@@ -13,6 +13,7 @@ import { BillingRecordFormComponent } from '../billing-record-form/billing-recor
 import { InvoiceFormComponent } from '../invoice-form/invoice-form.component';
 import { InvoiceComponent } from '../invoice/invoice.component';
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
+import { PaymentComponent } from '../payment/payment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,8 +28,8 @@ const routes: Routes = [
   { path: 'billing-record/add', component: BillingRecordFormComponent, canActivate: [AuthGuard] },
   { path: 'invoice/add', component: InvoiceFormComponent, canActivate: [AuthGuard] },
   { path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard] },
-  { path: 'invoice/payment/:id', component: PaymentFormComponent, canActivate: [AuthGuard] },
-  { path: 'invoice/payment', component: PaymentFormComponent, canActivate: [AuthGuard] },
+  { path: 'invoice/payment/add/:id', component: PaymentFormComponent, canActivate: [AuthGuard] },
+  { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
 
 ];
 

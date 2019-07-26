@@ -25,43 +25,49 @@
     </div> 
     <input [ngModel]="invoice?.id" ngModel #invoice_id="ngModel" type="hidden" name="id">
     <div class="form-group">
-      <label for="name" class="col-sm-2 control-label">Company Name</label>
+      <label for="name" class="col-sm-2 control-label">Invoice ID</label>
       <div class="col-sm-10">
-        <input [disabled]="true" [ngModel]="invoice?.id" ngModel #name="ngModel" type="text" class="form-control" id="id" name="id" placeholder="Company id" required minlength="2" maxlength="30">
+        <input readonly="readonly"  [ngModel]="invoice?.id" ngModel #name="ngModel" type="text" class="form-control" id="id" name="id" placeholder="Company id" required minlength="2" maxlength="30">
       </div>
     </div>
 
+
+    <input [ngModel]="invoice?.currentBalance" ngModel #balance="ngModel" type="hidden" name="currentBalance">
     <div class="form-group">
-      <label for="name" class="col-sm-2 control-label">Balance</label>
+      <label for="balance" class="col-sm-2 control-label">Balance</label>
       <div class="col-sm-10">
-        <input [disabled]="true" [ngModel]="invoice?.balance" ngModel #balance="ngModel" type="text" class="form-control" id="balance" name="balance" placeholder="Company id" required minlength="2" maxlength="30">
+        <input [disabled]="true" [ngModel]="invoice?.currentBalance" ngModel #currentBalance="ngModel" type="text" class="form-control" id="currentBalance" name="currentBalance" placeholder="Current balance" >
       </div>
     </div> 
+   
+
+
     <div class="form-group">
       <label for="paymentAmount" class="col-sm-2 control-label">Payment Amount</label>
       <div class="col-sm-10">
-        <input ngModel #paymentDescription="ngModel" type="number" class="form-control" id="paymentDescription" name="paymentDescription"
+        <input ngModel #paymentAmount="ngModel" type="number" class="form-control" id="paymentAmount" name="amount"
           placeholder="e.g. 100.00" required minlength="3" maxlength="30" required pattern="^(\d*\.)?\d+$">
-        <span *ngIf="formErrors.paymentDescription" class="text-danger">
-          {{ formErrors.paymentDescription }}
+        <span *ngIf="formErrors.paymentAmount" class="text-danger">
+          {{ formErrors.paymentAmount }}
         </span>
       </div>
     </div>
     <div class="form-group">
-      <label for="client" class="col-sm-2 control-label">Method Type</label>
+      <label for="method" class="col-sm-2 control-label">Method Type</label>
       <div class="col-sm-10">
-        <select class="form-control"  ng-model="view.activeResource.ValueType">
+        <select required [ngModel]="null" ngModel #method="ngModel" class="form-control" id="method" name="method">        
           <option [ngValue]="null">-- Select Payment Method --</option>
-          <option value="0">Credit Card</option>
-          <option value="2" >Check</option>
-          <option value="1">Cash</option>
+          <option value="Credit Card">Credit Card</option>
+          <option value="Check" >Check</option>
+          <option value="Cash">Cash</option>
         </select>
       </div>
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button [disabled]="!paymentForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
-      </div>
+        <button class="btn btn-primary">Submit</button>
+<!--        <button [disabled]="!paymentForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+-->   </div>
     </div>
   </form>
 </section>

@@ -29,11 +29,11 @@
           <td>{{invoice.invoiceDescription}}</td>
           <td>{{invoice.company.name}}</td>
           <td>{{invoice.lineItems.length}}</td>
-          <td>{{invoice.balance}}</td>
+          <td>{{invoice.currentBalance}}</td>
           <td>{{invoice.createdBy.username}}</td>
           <td>{{invoice.createdOn}}</td>
           <td class="text-center">
-            <a class="btn btn-primary" [routerLink]="['/invoice/payment/', invoice.id]">Pay</a>&nbsp;
+            <a class="btn btn-primary" [routerLink]="['/invoice/payment/add/', invoice.id]">Pay</a>&nbsp;
           </td>
         </tr>
       </tbody>
