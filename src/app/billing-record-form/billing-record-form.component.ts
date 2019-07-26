@@ -56,7 +56,7 @@ export class BillingRecordFormComponent implements OnInit {
 
     let endpoint = "billing-record/rate-based"
 
-    if(billingRecordForm.value.recordType === "flatfee"){
+    if(billingRecordForm.value.recordType === "FlatFeeBillingRecord"){
       endpoint = "billing-record/flat-fee"
     }
 
@@ -64,13 +64,30 @@ export class BillingRecordFormComponent implements OnInit {
 
     delete(billingRecordForm.value.client)
 
+    if(typeof billingRecordForm.value.id === "number"){
+      // endpoint += "/";
+
+      // delete(billingRecordForm.value.client)
+
+      this.dataService.editRecord(endpoint, billingRecordForm.value, billingRecordForm.value.id)
+          .subscribe(
+            result => this.successMessage = "Record updated successfully",
+            error =>  this.errorMessage = <any>error);
+    }else{
+
+  
+
     this.dataService.addRecord(endpoint, billingRecordForm.value)
       .subscribe(
         result => this.successMessage = "Record added successfully",
         error => this.errorMessage = <any>error
       );
+    }
     this.billingRecordForm.reset()
+
   }
+
+  
 
   ngAfterViewChecked() {
     this.formChanged();
