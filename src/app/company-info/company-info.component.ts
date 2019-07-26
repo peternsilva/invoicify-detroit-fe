@@ -39,7 +39,7 @@ export class CompanyInfoComponent implements OnInit {
 	private createGraph() {
 		let dataPoints = this.invoices.map((invoice) => {
 			console.log(invoice.balance);
-			let item = { x: new Date(invoice.createdOn), y: invoice.balance }
+			let item = { x: new Date(invoice.createdOn), y: 300 }
 			// let item = { x: new Date("2018-03-01"), y: 85.3 }
 			// { x: invoice.createdOn, y: 100 }
 			return item;
@@ -81,21 +81,21 @@ export class CompanyInfoComponent implements OnInit {
 				}
 			},
 			axisY: {
-				title: "Closing Price (in EUR)",
+				title: "Balance (in USD)",
 				includeZero: false,
-				valueFormatString: "€##0.00",
+				valueFormatString: "$##0.00",
 				crosshair: {
 					enabled: true,
 					snapToDataPoint: true,
 					labelFormatter: function (e) {
-						return "€" + CanvasJS.formatNumber(e.value, "##0.00");
+						return "$" + CanvasJS.formatNumber(e.value, "##0.00");
 					}
 				}
 			},
 			data: [{
 				type: "area",
 				xValueFormatString: "DD MMM",
-				yValueFormatString: "€##0.00",
+				yValueFormatString: "$##0.00",
 				dataPoints: dataPoints
 			}]
 		});
