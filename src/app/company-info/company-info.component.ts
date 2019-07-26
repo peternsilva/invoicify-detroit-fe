@@ -19,7 +19,7 @@ export class CompanyInfoComponent implements OnInit {
   successMessage: string;
   invoices: any[];
   title = 'canvasjs-angular';
-
+  // data: any[];
   constructor (
     private dataService: DataService,
     private route: ActivatedRoute
@@ -27,6 +27,7 @@ export class CompanyInfoComponent implements OnInit {
 
     ngOnInit() { 
     this.getInvoices(this.route.params['value']['id']); 
+    console.log("invoice response: ", this.invoices)
     let dataPoints = [
 			{ x: new Date("2018-03-01"), y: 85.3},
 			{ x: new Date("2018-03-02"), y: 83.97},
@@ -87,12 +88,23 @@ export class CompanyInfoComponent implements OnInit {
     
   }
 
+  // getInvoices(id: number) {
+  //   this.dataService.getRecords("invoice/company/"+id)
+  //     .subscribe(
+  //       results => this.invoices = results,
+  //       error =>  this.errorMessage = <any>error);
+  // }
+  
   getInvoices(id: number) {
     this.dataService.getRecords("invoice/company/"+id)
-      .subscribe(
-        results => this.invoices = results,
-        error =>  this.errorMessage = <any>error);
+      .subscribe((results)=>{
+        // this.invoices = results; 
+        console.log("RESULTS---->",results);
+        return this.invoices = results;
+        }, error => { this.errorMessage = <any>error});
+        
   }
+
 
 
 }
