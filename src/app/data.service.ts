@@ -34,7 +34,7 @@ export class DataService {
     }
 
     getBillingRecord(endpoint: string, id:number): Observable<object> {
-        let apiUrl = `${this.baseUrl}${endpoint}/editt/${id}`;
+        let apiUrl = `${this.baseUrl}${endpoint}/edit/${id}`;
         return this.http.get(apiUrl, this.options)
             .map(this.extractData)
             .catch(this.handleError);

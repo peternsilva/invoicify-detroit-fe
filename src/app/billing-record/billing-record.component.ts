@@ -28,6 +28,10 @@ export class BillingRecordComponent implements OnInit {
         error =>  this.errorMessage = <any>error);
   }
 
+  trackByFn(index, item) {
+    return index; 
+  }
+
   deleteRecord(id:number) {
 
     let dialogRef = this.dialog.open(DeleteConfirmComponent);
