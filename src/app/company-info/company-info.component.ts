@@ -90,6 +90,7 @@ export class CompanyInfoComponent implements OnInit {
 		});
 		chart.render();
 
+<<<<<<< HEAD
 	}
 
 	getBalanceOnDate(d: Date) : number {
@@ -110,6 +111,25 @@ export class CompanyInfoComponent implements OnInit {
 				results => this.invoices = results,
 				error => this.errorMessage = <any>error);
 	}
+=======
+  // getInvoices(id: number) {
+  //   this.dataService.getRecords("invoice/company/"+id)
+  //     .subscribe(
+  //       results => this.invoices = results,
+  //       error =>  this.errorMessage = <any>error);
+  // }
+  
+  getInvoices(id: number) {
+    this.dataService.getRecords("invoice/company/"+id)
+      .subscribe((results)=>{
+        // this.invoices = results; 
+        console.log("RESULTS---->",results);
+        return this.invoices = results;
+        }, error => { this.errorMessage = <any>error});
+        
+  }
+>>>>>>> d6e20bacbf80d06ca8ded698d1ae0b86f9dfd487
+
 
 
 }
