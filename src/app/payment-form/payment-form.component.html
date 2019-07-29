@@ -16,7 +16,6 @@
   <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 
   <form novalidate (ngSubmit)="savePayment(paymentForm)" #paymentForm="ngForm" class="form-horizontal">
-    <input [ngModel]="invoice?.company.name" ngModel #invoice_company_name="ngModel" type="hidden" name="id">
     <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Company Name</label>
       <div class="col-sm-10">
@@ -26,11 +25,9 @@
     <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Invoice ID</label>
       <div class="col-sm-10">
-        <input readonly="readonly"  [ngModel]="invoice?.id" ngModel #name="ngModel" type="text" class="form-control" id="id" name="id" placeholder="Company id" required minlength="2" maxlength="30">
+        <input [disabled]="true"  [ngModel]="invoice?.id" ngModel #invoiceId="ngModel" type="text" class="form-control" id="invoiceId" name="invoiceId" >
       </div>
     </div>
-
-
     <input [ngModel]="invoice?.currentBalance" ngModel #balance="ngModel" type="hidden" name="currentBalance">
     <div class="form-group">
       <label for="balance" class="col-sm-2 control-label">Balance</label>
@@ -44,9 +41,9 @@
     <div class="form-group">
       <label for="amount" class="col-sm-2 control-label">Payment Amount</label>
       <div class="col-sm-10">
-        <input ngModel #paymentAmount="ngModel" type="number" class="form-control" id="amount" name="amount"
-          placeholder="e.g. 100.00" required minlength="3" min="0" maxlength="30" required pattern="^(\d*\.)?\d+$">
-        <span *ngIf="formErrors.paymentAmount" class="text-danger">
+        <input ngModel #amount="ngModel" type="number" class="form-control" id="amount" name="amount"
+          placeholder="e.g. 100.00" min="0" max="300" maxlength="30" required pattern="^(\d*\.)?\d+$">
+        <span *ngIf="formErrors.amount" class="text-danger">
           {{ formErrors.amount }}
         </span>
       </div>
@@ -65,7 +62,6 @@
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <button [disabled]="!paymentForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
-        <button class="btn btn-primary">Submit</button>
       </div>
     </div>
   </form>

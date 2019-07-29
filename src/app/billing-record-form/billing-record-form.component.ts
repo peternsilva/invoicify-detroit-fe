@@ -47,8 +47,6 @@ export class BillingRecordFormComponent implements OnInit {
 
     endpoint += "/" + billingRecordForm.value.client
     delete(billingRecordForm.value.client)
-    console.log(endpoint)
-    console.log(billingRecordForm.value)
     this.dataService.addRecord(endpoint, billingRecordForm.value)
       .subscribe(
         result => this.successMessage = "Record added successfully",

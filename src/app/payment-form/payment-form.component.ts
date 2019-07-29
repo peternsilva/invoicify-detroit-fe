@@ -21,7 +21,8 @@ export class PaymentFormComponent implements OnInit {
   successMessage: string;
   errorMessage: string;
   invoices: any[];
-
+  invoiceBalance: number = 0;
+  invoiceId: number;
   invoice: object;
 
   constructor(
@@ -42,7 +43,7 @@ export class PaymentFormComponent implements OnInit {
     this.route.params
       .subscribe((params: Params) => {
         (+params['id']) ? this.getRecordForEdit() : null;
-
+        this.invoiceId = params['id']; 
       });
   }
 
@@ -54,8 +55,7 @@ export class PaymentFormComponent implements OnInit {
   }
 
   savePayment(paymentForm : NgForm){
-    let endpoint = "new-payment/" + paymentForm.value.id
-    // console.log(endpoint)
+    let endpoint = "new-payment/" + this.invoiceId;
     this.dataService.addRecord(endpoint, paymentForm.value)
       .subscribe(
         result => this.successMessage = "Record added successfully",
@@ -79,7 +79,7 @@ export class PaymentFormComponent implements OnInit {
     let form = this.paymentForm.form;
     
     for (let field in this.formErrors) {
-      // clear previous eIrror message (if any)
+      // clear previous error message (if any)
       this.formErrors[field] = '';
       const control = form.get(field);
 
@@ -98,7 +98,8 @@ export class PaymentFormComponent implements OnInit {
 
   validationMessages = {
     'amount': {
-      'pattern': 'Must be a numeric value'
+      'pattern': 'Must be a numeric value',
+      'max': 'Payment amount must be less than or equal to the invoice balance.'
     }
   };
 
