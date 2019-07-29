@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { DataService } from './data.service';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 import { CompanyFormComponent } from './company-form/company-form.component';
+import { CompanyInfoComponent } from './company-info/company-info.component';
 import { StatusMessageComponent } from './status-message/status-message.component';
 
 import { AuthGuard } from './auth-guard.service';
@@ -29,6 +30,7 @@ import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
+    CompanyInfoComponent,
     AppComponent,
     NavigationComponent,
     CompanyComponent,

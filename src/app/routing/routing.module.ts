@@ -14,11 +14,15 @@ import { InvoiceFormComponent } from '../invoice-form/invoice-form.component';
 import { InvoiceComponent } from '../invoice/invoice.component';
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
 import { PaymentComponent } from '../payment/payment.component';
+import { CompanyInfoComponent } from '../company-info/company-info.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
   { path: 'company',  component: CompanyComponent, canActivate: [AuthGuard] },
+  { path: 'company/id', component: CompanyInfoComponent, canActivate: [AuthGuard]},
+  // adding company-info path 
+  { path: 'company-info/:id', component: CompanyInfoComponent, canActivate: [AuthGuard] },
   { path: 'company/edit/:id', component: CompanyFormComponent, canActivate: [AuthGuard] },
   { path: 'company/add', component: CompanyFormComponent, canActivate: [AuthGuard] },
   { path: 'user',  component: UserComponent, canActivate: [AuthGuard] },
