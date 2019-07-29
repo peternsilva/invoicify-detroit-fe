@@ -28,4 +28,23 @@ export class BillingRecordComponent implements OnInit {
         error =>  this.errorMessage = <any>error);
   }
 
+  trackByFn(index, item) {
+    return index; 
+  }
+
+  deleteRecord(id:number) {
+
+    let dialogRef = this.dialog.open(DeleteConfirmComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.dataService.deleteRecord("billing-record", id)
+          .subscribe(
+            company => {this.successMessage = "Record(s) deleted succesfully"; this.getBillingRecords(); },
+            error =>  this.errorMessage = <any>error);
+      }
+    });
+  }
+
+
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import * as jspdf from 'jspdf';  
+
 import { DataService } from '../data.service'
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component'
 import { fadeInAnimation } from '../animations/fade-in.animation';
@@ -36,5 +38,19 @@ export class InvoiceComponent implements OnInit {
   }
 
 
+
+  public makePDF()  
+  {  
+    var data = document.getElementById('PDFify');  
+
+  let margins = {
+    top: 80, bottom: 60, left: 60, width: 522
+    };
   
+      let pdf = new jspdf('p', 'pt', 'letter');
+      pdf.fromHTML(data,margins.left, margins.top);
+
+      pdf.save('PDFify.pdf'); 
+  }  
+
 }

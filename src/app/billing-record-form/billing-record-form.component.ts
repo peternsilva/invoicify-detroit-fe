@@ -20,6 +20,8 @@ export class BillingRecordFormComponent implements OnInit {
   errorMessage: string;
   companies: any[];
 
+  billingRecord: object;
+
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
@@ -28,6 +30,10 @@ export class BillingRecordFormComponent implements OnInit {
 
   ngOnInit(){
     this.getCompanies()
+    this.route.params
+      .subscribe((params: Params) => {
+        (+params['id']) ? this.getRecordForEdit() : null;
+      });
   }
 
   getCompanies() {
@@ -37,23 +43,51 @@ export class BillingRecordFormComponent implements OnInit {
         error =>  this.errorMessage = <any>error);
   }
 
+  getRecordForEdit(){
+    this.route.params
+      .switchMap((params: Params) => this.dataService.getBillingRecord("billing-record", +params['id']))
+      .subscribe(billingRecord => this.billingRecord = billingRecord);
+
+
+      // console.log(this.billingRecord);
+  }
+
   saveBillingRecord(billingRecordForm: NgForm) {
 
     let endpoint = "billing-record/rate-based"
 
-    if(billingRecordForm.value.recordType === "flatfee"){
+    if(billingRecordForm.value.recordType === "FlatFeeBillingRecord"){
       endpoint = "billing-record/flat-fee"
     }
 
     endpoint += "/" + billingRecordForm.value.client
     delete(billingRecordForm.value.client)
+
+
+    if(typeof billingRecordForm.value.id === "number"){
+      // endpoint += "/";
+
+      // delete(billingRecordForm.value.client)
+
+      this.dataService.editRecord(endpoint, billingRecordForm.value, billingRecordForm.value.id)
+          .subscribe(
+            result => this.successMessage = "Record updated successfully",
+            error =>  this.errorMessage = <any>error);
+    }else{
+
+  
+
     this.dataService.addRecord(endpoint, billingRecordForm.value)
       .subscribe(
         result => this.successMessage = "Record added successfully",
         error => this.errorMessage = <any>error
       );
+    }
     this.billingRecordForm.reset()
+
   }
+
+  
 
   ngAfterViewChecked() {
     this.formChanged();

@@ -25,8 +25,11 @@ import { BillingRecordComponent } from './billing-record/billing-record.componen
 import { BillingRecordFormComponent } from './billing-record-form/billing-record-form.component';
 import { InvoiceFormComponent } from './invoice-form/invoice-form.component';
 import { InvoiceComponent } from './invoice/invoice.component';
+
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { PaymentComponent } from './payment/payment.component';
+import { LandingPage1Component } from './landing-page1/landing-page1.component';
+
 
 @NgModule({
   declarations: [
@@ -44,8 +47,12 @@ import { PaymentComponent } from './payment/payment.component';
     BillingRecordFormComponent,
     InvoiceFormComponent,
     InvoiceComponent,
+
     PaymentFormComponent,
     PaymentComponent,
+
+    LandingPage1Component,
+
   ],
   imports: [
     BrowserModule,

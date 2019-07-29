@@ -21,6 +21,21 @@ export class DataService {
 
     getRecords(endpoint: string): Observable<any[]> {
         let apiUrl = this.baseUrl+endpoint;
+
+        console.log(this.http.get(apiUrl, this.options)
+        .map(this.extractData)
+        .catch(this.handleError));
+
+
+        return this.http.get(apiUrl, this.options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    getRecordsById(endpoint: string, id:number): Observable<any[]> {
+        let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
+            
+
         return this.http.get(apiUrl, this.options)
             .map(this.extractData)
             .catch(this.handleError);
@@ -32,6 +47,14 @@ export class DataService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+
+    getBillingRecord(endpoint: string, id:number): Observable<object> {
+        let apiUrl = `${this.baseUrl}${endpoint}/edit/${id}`;
+        return this.http.get(apiUrl, this.options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
 
     deleteRecord(endpoint: string, id?:number): Observable<object> {
         let apiUrl = `${this.baseUrl}${endpoint}`;
