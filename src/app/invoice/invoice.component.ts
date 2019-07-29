@@ -14,11 +14,14 @@ export class InvoiceComponent implements OnInit {
 
   errorMessage: string;
   successMessage: string;
+  selectedInvoiceId = 0;
   invoices: any[];
 
   constructor (private dataService: DataService) {}
 
-  ngOnInit() { this.getInvoices(); }
+  ngOnInit() { 
+    this.getInvoices(); 
+  }
 
   getInvoices() {
     this.dataService.getRecords("invoice")
@@ -26,4 +29,12 @@ export class InvoiceComponent implements OnInit {
         results => this.invoices = results,
         error =>  this.errorMessage = <any>error);
   }
+
+
+  onSelectionChange(invoiceId) {
+      this.selectedInvoiceId = invoiceId;
+  }
+
+
+  
 }

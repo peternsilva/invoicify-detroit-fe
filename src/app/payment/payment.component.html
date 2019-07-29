@@ -26,7 +26,6 @@
         <td>{{payment.method}}</td>
         <td>{{payment.invoice.id}}</td>
         <td class="text-center">
-          <!-- <a class="btn btn-primary" [routerLink]="['/payment/add/', payment.id]">Edit</a>&nbsp; -->
           <button (click)="deletePayment(payment.id)" class="btn btn-danger">Delete</button>
         </td>
       </tr>
