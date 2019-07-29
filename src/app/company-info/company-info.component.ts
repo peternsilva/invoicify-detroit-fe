@@ -36,14 +36,18 @@ export class CompanyInfoComponent implements OnInit {
 
 	}
 
-	private createGraph() {
-		let dataPoints = this.invoices.map((invoice) => {
-			console.log(invoice.balance);
-			let item = { x: new Date(invoice.createdOn), y: 300 }
-			// let item = { x: new Date("2018-03-01"), y: 85.3 }
-			// { x: invoice.createdOn, y: 100 }
-			return item;
-		})
+	private createGraph(dataPoints: any[]) {
+		dataPoints.sort((a, b) => {
+			return a.x.getTime() - b.x.getTime();
+		});
+		console.log("datapoints ", dataPoints);
+		// let dataPoints = this.invoices.map((invoice) => {
+		// 	console.log(invoice.balance);
+		// 	let item = { x: new Date(invoice.createdOn), y: 300 }
+		// 	// let item = { x: new Date("2018-03-01"), y: 85.3 }
+		// 	// { x: invoice.createdOn, y: 100 }
+		// 	return item;
+		// })
 		// let dataPoints = [
 			// { x: new Date("2018-03-01"), y: 85.3 },
 		// 	{ x: new Date("2018-03-02"), y: 83.97 },
@@ -102,16 +106,23 @@ export class CompanyInfoComponent implements OnInit {
 		chart.render();
 	}
 
-	getBalanceOnDate(d: Date) : number {
-		console.log("invoices in func: ",this.invoices);
+	getBalanceOnDate(balance_date: Date) : number {
+		// console.log("invoices in func: ",this.invoices);
 		let curBal = 0.0;
 		this.invoices.forEach(invoice => {
-			
-			if (invoice.paidOn > d) {
-				curBal += invoice.balance;
+			console.log("paid on ",invoice.paidOn);
+			if (!invoice.paidOn) {
+				// console.log(invoice.initialBalance);
+				curBal += invoice.initialBalance;
+				// return;
+			}
+			else if (new Date(invoice.paidOn) > balance_date) {
+				console.log("initial balance",invoice.initialBalance);
+				curBal += invoice.initialBalance;
 			}
 			
 		});
+		console.log(curBal);
 		return curBal;
 	}
 
@@ -131,10 +142,33 @@ export class CompanyInfoComponent implements OnInit {
   getInvoices(id: number) {
     this.dataService.getRecords("invoice/company/"+id)
       .subscribe((results)=>{
-        this.invoices = results; 
+		this.invoices = results; 
+		// let dates_to_check/: Date[];
+		let dates_to_check = new Array();
+		console.log(this.invoices);
+		this.invoices.forEach(invoice => {
+			console.log(new Date(invoice.createdOn));
+			dates_to_check.push(new Date(invoice.createdOn));
+			if (invoice.paidOn) {
+				dates_to_check.push(new Date(invoice.paidOn));
+
+			}
+		});
+		dates_to_check.sort((a, b) => {
+			return a.getTime() - b.getTime();
+		});
+		console.log("sorted dates --> ",dates_to_check);
 		console.log("RESULTS---->",results);
+		// let minDate/ = this.getMinDate();
+		// let dataPoints: any[];
+		let dataPoints = new Array();
+		// let maxDate = this.getMaxDate();
+		dates_to_check.forEach(date => {
+			// this.getBalanceOnDate(date);
+			dataPoints.push({x:date, y:this.getBalanceOnDate(date)});
+		});
 		// this.getBalanceOnDate(new Date());
-		this.createGraph();
+		this.createGraph(dataPoints);
         return this.invoices = results;
         }, error => { this.errorMessage = <any>error});
         
@@ -142,4 +176,27 @@ export class CompanyInfoComponent implements OnInit {
 
 
 
+
+	private getMinDate() {
+		let minDate = new Date(this.invoices[0].createdOn);
+		this.invoices.forEach(invoice => {
+			let createdDate = new Date(invoice.createdOn);
+			if (createdDate < minDate) {
+				console.log(createdDate, " is less than ", minDate);
+				minDate = createdDate;
+			}
+		});
+		return minDate;
+	}
+	private getMaxDate() {
+		let maxDate = new Date(this.invoices[0].paidOn);
+		this.invoices.forEach(invoice => {
+			let paidDate = new Date(invoice.paidOn)
+			if (paidDate > maxDate) {
+				console.log(paidDate, " is less than ", maxDate);
+				maxDate = paidDate;
+			}
+		});
+		return maxDate;
+	}
 }
