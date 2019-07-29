@@ -55,7 +55,12 @@ export class PaymentFormComponent implements OnInit {
   }
 
   savePayment(paymentForm : NgForm){
+<<<<<<< HEAD
     let endpoint = "new-payment/" + this.invoiceId;
+=======
+    let endpoint = "new-payment/" + paymentForm.value.invoiceId
+    // console.log(endpoint)
+>>>>>>> 09065bb127e855522f19920a882676882948d5ff
     this.dataService.addRecord(endpoint, paymentForm.value)
       .subscribe(
         result => this.successMessage = "Record added successfully",
