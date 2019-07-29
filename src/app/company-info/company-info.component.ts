@@ -78,7 +78,7 @@ export class CompanyInfoComponent implements OnInit {
 				text: "Balance History"
 			},
 			axisX: {
-				valueFormatString: "DD MMM",
+				valueFormatString: "DD MMM YYYY",
 				crosshair: {
 					enabled: true,
 					snapToDataPoint: true
@@ -98,7 +98,7 @@ export class CompanyInfoComponent implements OnInit {
 			},
 			data: [{
 				type: "area",
-				xValueFormatString: "DD MMM",
+				xValueFormatString: "DD MMM YYYY",
 				yValueFormatString: "$##0.00",
 				dataPoints: dataPoints
 			}]
