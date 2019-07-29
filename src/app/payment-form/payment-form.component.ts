@@ -54,10 +54,8 @@ export class PaymentFormComponent implements OnInit {
   }
 
   savePayment(paymentForm : NgForm){
-    console.log(paymentForm);
     let endpoint = "new-payment/" + paymentForm.value.id
     // console.log(endpoint)
-    console.log(paymentForm.value)
     this.dataService.addRecord(endpoint, paymentForm.value)
       .subscribe(
         result => this.successMessage = "Record added successfully",
@@ -95,14 +93,12 @@ export class PaymentFormComponent implements OnInit {
   }
 
   formErrors = {
-    'name': ''
+    'amount': ''
   };
 
   validationMessages = {
-    'name': {
-      'required': 'Payment name is required.',
-      'minlength': 'Payment name must be at least 2 characters long.',
-      'maxlength': 'Payment name cannot be more than 30 characters long.'
+    'amount': {
+      'pattern': 'Must be a numeric value'
     }
   };
 
