@@ -140,10 +140,7 @@ export class AnalyticsComponent implements OnInit {
     let curBal = 0.0;
     this.invoices.forEach(invoice => {
       console.log("paid on ", invoice.paidOn);
-      if (!invoice.paidOn) {
-        return;
-      }
-      else if (new Date(invoice.paidOn) > balance_date) {
+      if (invoice.paidOn && new Date(invoice.paidOn) <= balance_date) {
         console.log("initial balance", invoice.initialBalance);
         curBal += invoice.initialBalance;
       }
@@ -202,7 +199,7 @@ export class AnalyticsComponent implements OnInit {
       if (date.getFullYear() === 2019) {
         let income_on_date = this.getIncomeOnDate(date);
         dataPointsIncome.push({x: date, y: income_on_date});
-      }
+      } 
 
     });
 
