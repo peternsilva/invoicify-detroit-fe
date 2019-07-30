@@ -30,7 +30,7 @@ export class AnalyticsComponent implements OnInit {
     this.getDataCards();
   }
 
-  private createLineGraph(dataPoints: any[], chartName: String, color: String) {
+  private createLineGraph(dataPoints: any[], chartName: String, color: String, textVal: String) {
     dataPoints.sort((a, b) => {
       return a.x.getTime() - b.x.getTime();
     });
@@ -46,7 +46,7 @@ export class AnalyticsComponent implements OnInit {
       animationEnabled: true,
       theme: "light",
       title: {
-        text: "Balance History"
+        text: textVal
       },
       axisX: {
         valueFormatString: "DD MMM YYYY",
@@ -159,8 +159,8 @@ export class AnalyticsComponent implements OnInit {
       if (Date.now() - date.getTime() < 30 * 8.64e+7)
         dataPoints30day.push({ x: date, y: bal_on_date });
     });
-    this.createLineGraph(dataPoints, "chartContainer","red");
-    this.createLineGraph(dataPoints30day, "30dayChart","green");
+    this.createLineGraph(dataPoints, "chartContainer","red", "Balance History");
+    this.createLineGraph(dataPoints30day, "30dayChart","green", "30 Days Balance History");
 
   }
 
