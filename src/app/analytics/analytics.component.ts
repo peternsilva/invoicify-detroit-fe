@@ -30,17 +30,23 @@ export class AnalyticsComponent implements OnInit {
     this.getDataCards();
   }
 
-  private createLineGraph(dataPoints: any[], chartName: String) {
+  private createLineGraph(dataPoints: any[], chartName: String, color: String, textVal: String) {
     dataPoints.sort((a, b) => {
       return a.x.getTime() - b.x.getTime();
     });
     console.log("datapoints ", dataPoints);
-
+    let defColor : String;
+    if (color === "red"){
+        defColor = "#FF5733";
+    }
+    else if (color === "green"){
+      defColor = "#33FF5F";
+    }
     let chart = new CanvasJS.Chart(chartName, {
       animationEnabled: true,
-      theme: "light2",
+      theme: "light",
       title: {
-        text: "Balance History (YTD)"
+        text: textVal
       },
       axisX: {
         valueFormatString: "DD MMM YYYY",
@@ -63,6 +69,7 @@ export class AnalyticsComponent implements OnInit {
       },
       data: [{
         type: "area",
+        color: defColor,
         xValueFormatString: "DD MMM YYYY",
         yValueFormatString: "$##0.00",
         dataPoints: dataPoints
@@ -198,9 +205,11 @@ export class AnalyticsComponent implements OnInit {
       }
 
     });
-    this.createLineGraph(dataPoints, "chartContainer");
-    this.create30DayLineGraph(dataPoints30day, "30dayChart");
-    this.createLineGraph(dataPointsIncome, "incomeYTD");
+
+    this.createLineGraph(dataPointsIncome, "incomeYTD", "blue", "Income YTD");
+    this.createLineGraph(dataPoints, "chartContainer","red", "Balance History");
+    this.createLineGraph(dataPoints30day, "30dayChart","green", "30 Days Balance History");
+
   }
 
   private setDataCards() {
