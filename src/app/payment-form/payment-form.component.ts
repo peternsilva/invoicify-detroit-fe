@@ -23,7 +23,7 @@ export class PaymentFormComponent implements OnInit {
   invoices: any[];
   invoiceBalance: number = 0;
   invoiceId: number;
-  invoice: object;
+  invoice: any;
 
   constructor(
     private dataService: DataService,
@@ -55,6 +55,16 @@ export class PaymentFormComponent implements OnInit {
   }
 
   savePayment(paymentForm : NgForm){
+   
+    this.errorMessage = "";
+
+    if(this.invoice.currentBalance < this.paymentForm.value.amount)
+    {
+      this.errorMessage = "Please enter a value less than or equal to the current balance";
+      return;
+    }
+
+
     let endpoint = "new-payment/" + this.invoiceId;
     this.dataService.addRecord(endpoint, paymentForm.value)
       .subscribe(
