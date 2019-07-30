@@ -29,6 +29,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { PaymentComponent } from './payment/payment.component';
 import { LandingPage1Component } from './landing-page1/landing-page1.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 
 @NgModule({
@@ -52,6 +53,8 @@ import { LandingPage1Component } from './landing-page1/landing-page1.component';
     PaymentComponent,
 
     LandingPage1Component,
+
+    AnalyticsComponent,
 
   ],
   imports: [
