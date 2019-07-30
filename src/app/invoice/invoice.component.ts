@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import * as jspdf from 'jspdf';  
+import jspdf from 'jspdf';  
+import 'jspdf-autotable';
 
 import { DataService } from '../data.service'
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component'
@@ -57,17 +58,12 @@ export class InvoiceComponent implements OnInit {
 
   public makePDF()  
   {  
-    var data = document.getElementById('PDFify-Unpaid'); 
-    var data2 = document.getElementById('PDFify-Paid');  
-
-  let margins = {
-    top: 80, bottom: 60, left: 60, width: 522
-    };
-  
     let pdf = new jspdf('p', 'pt', 'letter');
-    pdf.fromHTML(data, margins.left, margins.top);
+    pdf.text(60, 30, "Unpaid");
+    pdf.autoTable({html: '#dataTable', theme: 'grid', minCellHeight: 1000});
     pdf.addPage();
-    pdf.fromHTML(data2, margins.left, margins.top);
+    pdf.text(60, 30, "Paid");
+    pdf.autoTable({html: '#dataTable1', theme: 'grid', minCellHeight: 1000});
 
     pdf.save('PDFify.pdf'); 
   }  
