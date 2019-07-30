@@ -18,11 +18,15 @@ export class InvoiceComponent implements OnInit {
   successMessage: string;
   selectedInvoiceId = 0;
   invoices: any[];
+  unpaidInvoices: any[];
+  paidInvoices: any[];
 
   constructor (private dataService: DataService) {}
 
   ngOnInit() { 
     this.getInvoices(); 
+    this.getPaidInvoices(); 
+    this.getUnpaidInvoices(); 
   }
 
   getInvoices() {
@@ -32,25 +36,40 @@ export class InvoiceComponent implements OnInit {
         error =>  this.errorMessage = <any>error);
   }
 
+  getPaidInvoices() {
+    this.dataService.getRecords("invoice/paid")
+      .subscribe(
+        results => this.paidInvoices = results,
+        error =>  this.errorMessage = <any>error);
+  }
+
+  getUnpaidInvoices() {
+    this.dataService.getRecords("invoice/unpaid")
+      .subscribe(
+        results => this.unpaidInvoices = results,
+        error =>  this.errorMessage = <any>error);
+  }
+
 
   onSelectionChange(invoiceId) {
       this.selectedInvoiceId = invoiceId;
   }
 
-
-
   public makePDF()  
   {  
-    var data = document.getElementById('PDFify');  
+    var data = document.getElementById('PDFify-Unpaid'); 
+    var data2 = document.getElementById('PDFify-Paid');  
 
   let margins = {
     top: 80, bottom: 60, left: 60, width: 522
     };
   
-      let pdf = new jspdf('p', 'pt', 'letter');
-      pdf.fromHTML(data,margins.left, margins.top);
+    let pdf = new jspdf('p', 'pt', 'letter');
+    pdf.fromHTML(data, margins.left, margins.top);
+    pdf.addPage();
+    pdf.fromHTML(data2, margins.left, margins.top);
 
-      pdf.save('PDFify.pdf'); 
+    pdf.save('PDFify.pdf'); 
   }  
 
 }
