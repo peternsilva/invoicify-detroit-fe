@@ -1,0 +1,43 @@
+.graphbox {
+    display: flex;
+    /* margin-left: -5em; */
+    margin-right: 0em;
+    margin-top: 5em;
+    /* justify-content: space-between; */
+    /* flex-wrap: wrap; */
+    /* height: 70em; */
+    /* width: 80em; */
+}
+
+.cardbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* margin-left: -5em; */
+
+    
+
+}
+
+.card{
+    
+    border: 2px solid black;
+    padding: 3em 6em;
+    margin-right: .5em; 
+    margin-top: 5em;
+}
+
+
+
+.card2{
+    
+    border: 2px solid black;
+    padding: 4em 7.8em;
+    /* margin-left: .5em; */
+    margin-top: .5em;
+}
+
+p{
+    font-size: 16px;
+    overflow-wrap: break-word;
+}
