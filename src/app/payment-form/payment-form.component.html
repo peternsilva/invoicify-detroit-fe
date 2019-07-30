@@ -16,10 +16,7 @@
   <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 
   <form novalidate (ngSubmit)="savePayment(paymentForm)" #paymentForm="ngForm" class="form-horizontal">
-<<<<<<< HEAD
-=======
     <input [disabled]="true" [ngModel]="invoice?.company.name" ngModel #invoice_company_name="ngModel" type="hidden" name="id">
->>>>>>> 09065bb127e855522f19920a882676882948d5ff
     <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Company Name</label>
       <div class="col-sm-10">
@@ -29,11 +26,7 @@
     <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Invoice ID</label>
       <div class="col-sm-10">
-<<<<<<< HEAD
-        <input [disabled]="true"  [ngModel]="invoice?.id" ngModel #invoiceId="ngModel" type="text" class="form-control" id="invoiceId" name="invoiceId" >
-=======
-        <input readonly="readonly" [ngModel]="invoice?.id" ngModel #name="ngModel" type="text" class="form-control" id="invoiceId" name="invoiceId" placeholder="Company id" required minlength="2" maxlength="30">
->>>>>>> 09065bb127e855522f19920a882676882948d5ff
+        <input readonly="readonly" [ngModel]="invoice?.id" ngModel #name="ngModel" type="text" class="form-control" id="invoiceId" name="invoiceId">
       </div>
     </div>
     <input [ngModel]="invoice?.currentBalance" ngModel #balance="ngModel" type="hidden" name="currentBalance">

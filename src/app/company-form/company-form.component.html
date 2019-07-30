@@ -12,7 +12,7 @@
   <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 
   <form novalidate (ngSubmit)="saveCompany(companyForm)"  #companyForm="ngForm" class="form-horizontal">
-    <input [ngModel]="company?.name" ngModel #company_id="ngModel" type="hidden" name="id">
+    <input [ngModel]="company?.id" ngModel #company_id="ngModel" type="hidden" name="id">
     <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Company Name</label>
       <div class="col-sm-10">
