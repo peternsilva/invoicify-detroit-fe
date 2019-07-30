@@ -16,12 +16,15 @@ import { PaymentFormComponent } from '../payment-form/payment-form.component';
 import { PaymentComponent } from '../payment/payment.component';
 import { CompanyInfoComponent } from '../company-info/company-info.component';
 import { LandingPage1Component } from 'app/landing-page1/landing-page1.component';
+import { AnalyticsComponent } from 'app/analytics/analytics.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home',  component: LandingPage1Component },
   { path: 'company',  component: CompanyComponent, canActivate: [AuthGuard] },
   { path: 'company/id', component: CompanyInfoComponent, canActivate: [AuthGuard]},
+  // analytic path
+  { path: 'analytics', component: AnalyticsComponent},
   // adding company-info path 
   { path: 'company-info/:id', component: CompanyInfoComponent, canActivate: [AuthGuard] },
   { path: 'company/edit/:id', component: CompanyFormComponent, canActivate: [AuthGuard] },
