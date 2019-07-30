@@ -16,6 +16,7 @@ import { PaymentFormComponent } from '../payment-form/payment-form.component';
 import { PaymentComponent } from '../payment/payment.component';
 import { CompanyInfoComponent } from '../company-info/company-info.component';
 import { LandingPage1Component } from 'app/landing-page1/landing-page1.component';
+import { AnalyticsComponent } from 'app/analytics/analytics.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
@@ -23,6 +24,8 @@ const routes: Routes = [
   { path: 'home',  component: HomeComponent, canActivate: [AuthGuard]  },
   { path: 'company',  component: CompanyComponent, canActivate: [AuthGuard] },
   { path: 'company/id', component: CompanyInfoComponent, canActivate: [AuthGuard]},
+  // analytic path
+  { path: 'analytics', component: AnalyticsComponent},
   // adding company-info path 
   { path: 'company-info/:id', component: CompanyInfoComponent, canActivate: [AuthGuard] },
   { path: 'company/edit/:id', component: CompanyFormComponent, canActivate: [AuthGuard] },
@@ -32,11 +35,12 @@ const routes: Routes = [
   { path: 'user/add', component: UserFormComponent, canActivate: [AuthGuard] },
   { path: 'billing-record',  component: BillingRecordComponent, canActivate: [AuthGuard] },
   { path: 'billing-record/add', component: BillingRecordFormComponent, canActivate: [AuthGuard] },
-  {path: 'billing-record/edit/:id', component: BillingRecordFormComponent, canActivate: [AuthGuard]},
+  { path: 'billing-record/edit/:id', component: BillingRecordFormComponent, canActivate: [AuthGuard]},
   { path: 'invoice/add', component: InvoiceFormComponent, canActivate: [AuthGuard] },
   { path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard] },
   { path: 'invoice/payment/add/:id', component: PaymentFormComponent, canActivate: [AuthGuard] },
   { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
+  { path: 'analytics', component: AnalyticsComponent},
 
 ];
 
