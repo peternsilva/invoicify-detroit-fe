@@ -30,15 +30,21 @@ export class AnalyticsComponent implements OnInit {
     this.getDataCards();
   }
 
-  private createLineGraph(dataPoints: any[], chartName: String) {
+  private createLineGraph(dataPoints: any[], chartName: String, color: String) {
     dataPoints.sort((a, b) => {
       return a.x.getTime() - b.x.getTime();
     });
     console.log("datapoints ", dataPoints);
-
+    let defColor : String;
+    if (color === "red"){
+        defColor = "#FF5733";
+    }
+    else if (color === "green"){
+      defColor = "#33FF5F";
+    }
     let chart = new CanvasJS.Chart(chartName, {
       animationEnabled: true,
-      theme: "light2",
+      theme: "light",
       title: {
         text: "Balance History"
       },
@@ -63,6 +69,7 @@ export class AnalyticsComponent implements OnInit {
       },
       data: [{
         type: "area",
+        color: defColor,
         xValueFormatString: "DD MMM YYYY",
         yValueFormatString: "$##0.00",
         dataPoints: dataPoints
@@ -152,8 +159,8 @@ export class AnalyticsComponent implements OnInit {
       if (Date.now() - date.getTime() < 30 * 8.64e+7)
         dataPoints30day.push({ x: date, y: bal_on_date });
     });
-    this.createLineGraph(dataPoints, "chartContainer");
-    this.createLineGraph(dataPoints30day, "30dayChart");
+    this.createLineGraph(dataPoints, "chartContainer","red");
+    this.createLineGraph(dataPoints30day, "30dayChart","green");
 
   }
 
