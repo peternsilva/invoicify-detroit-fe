@@ -23,6 +23,8 @@ const routes: Routes = [
   { path: 'home',  component: LandingPage1Component },
   { path: 'company',  component: CompanyComponent, canActivate: [AuthGuard] },
   { path: 'company/id', component: CompanyInfoComponent, canActivate: [AuthGuard]},
+  // analytic path
+  { path: 'analytics', component: AnalyticsComponent},
   // adding company-info path 
   { path: 'company-info/:id', component: CompanyInfoComponent, canActivate: [AuthGuard] },
   { path: 'company/edit/:id', component: CompanyFormComponent, canActivate: [AuthGuard] },
