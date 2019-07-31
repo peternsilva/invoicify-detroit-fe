@@ -70,14 +70,15 @@ export class Chart30dayBalanceComponent implements OnInit {
     });
     console.log("datapoints ", dataPoints);
     let defColor : String;
-    if (color === "red"){
-        defColor = "#FF5733";
+    // colorTYPE = ["#371447","#CB3974","#8A3575"];
+    if (color === "blueberry"){
+        defColor = "#371447";
     }
-    else if (color === "green"){
-      defColor = "#33FF5F";
+    else if (color === "grape"){
+      defColor = "#CB3974";
     }
-    else if (color === "blue"){
-      defColor = "#33C5FF";
+    else if (color === "grapefruit"){
+      defColor = "#8A3575";
     }
     let chart = new CanvasJS.Chart(chartName, {
       animationEnabled: true,
@@ -116,56 +117,56 @@ export class Chart30dayBalanceComponent implements OnInit {
   }
 
 
-  private createDonutGraph(dataPoints: any[], chartName: String, color: String, textVal: String) {
-    dataPoints.sort((a, b) => {
-      return a.x.getTime() - b.x.getTime();
-    });
-    console.log("datapoints ", dataPoints);
-    let defColor : String;
-    if (color === "red"){
-        defColor = "#FF5733";
-    }
-    else if (color === "green"){
-      defColor = "#33FF5F";
-    }
-    else if (color === "blue"){
-      defColor = "#33C5FF";
-    }
-    let chart = new CanvasJS.Chart(chartName, {
-      animationEnabled: true,
-      theme: "light",
-      title: {
-        text: textVal
-      },
-      axisX: {
-        valueFormatString: "DD MMM YYYY",
-        crosshair: {
-          enabled: true,
-          snapToDataPoint: true
-        }
-      },
-      axisY: {
-        title: "Balance (in USD)",
-        includeZero: false,
-        valueFormatString: "$##0.00",
-        crosshair: {
-          enabled: true,
-          snapToDataPoint: true,
-          labelFormatter: function (e) {
-            return "$" + CanvasJS.formatNumber(e.value, "##0.00");
-          }
-        }
-      },
-      data: [{
-        type: "doughnut",
-        color: defColor,
-        xValueFormatString: "DD MMM YYYY",
-        yValueFormatString: "$##0.00",
-        dataPoints: dataPoints
-      }]
-    });
-    chart.render();
-  }
+  // private createDonutGraph(dataPoints: any[], chartName: String, color: String, textVal: String) {
+  //   dataPoints.sort((a, b) => {
+  //     return a.x.getTime() - b.x.getTime();
+  //   });
+  //   console.log("datapoints ", dataPoints);
+  //   let defColor : String;
+  //   if (color === "red"){
+  //       defColor = "#FF5733";
+  //   }
+  //   else if (color === "green"){
+  //     defColor = "#33FF5F";
+  //   }
+  //   else if (color === "blue"){
+  //     defColor = "#33C5FF";
+  //   }
+  //   let chart = new CanvasJS.Chart(chartName, {
+  //     animationEnabled: true,
+  //     theme: "light",
+  //     title: {
+  //       text: textVal
+  //     },
+  //     axisX: {
+  //       valueFormatString: "DD MMM YYYY",
+  //       crosshair: {
+  //         enabled: true,
+  //         snapToDataPoint: true
+  //       }
+  //     },
+  //     axisY: {
+  //       title: "Balance (in USD)",
+  //       includeZero: false,
+  //       valueFormatString: "$##0.00",
+  //       crosshair: {
+  //         enabled: true,
+  //         snapToDataPoint: true,
+  //         labelFormatter: function (e) {
+  //           return "$" + CanvasJS.formatNumber(e.value, "##0.00");
+  //         }
+  //       }
+  //     },
+  //     data: [{
+  //       type: "doughnut",
+  //       color: defColor,
+  //       xValueFormatString: "DD MMM YYYY",
+  //       yValueFormatString: "$##0.00",
+  //       dataPoints: dataPoints
+  //     }]
+  //   });
+  //   chart.render();
+  // }
 
   getBalanceOnDate(balance_date: Date): number {
 
@@ -255,7 +256,7 @@ export class Chart30dayBalanceComponent implements OnInit {
 
     // this.createLineGraph(dataPointsIncome, "incomeYTD", "blue", "Income YTD");
     // this.createLineGraph(dataPoints, "chartContainer","red", "Balance History");
-    this.createLineGraph(dataPoints30day, "30dayChart","green", "30 Days Balance History");
+    this.createLineGraph(dataPoints30day, "30dayChart","grapefruit", "30 Days Balance History");
     // this.createDonutGraph(dataPoints30day, "30dayChart","blue", "DONUT CHART");
 
   }

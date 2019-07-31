@@ -39,28 +39,9 @@ export class ChartPaymentTypeComponent implements OnInit {
     }
     let chart = new CanvasJS.Chart(chartName, {
       animationEnabled: true,
-      theme: "light2",
-      title: {
-        text: textVal
-      },
-      axisX: {
-        valueFormatString: "DD MMM YYYY",
-        crosshair: {
-          enabled: true,
-          snapToDataPoint: true
-        }
-      },
-      axisY: {
-        title: "Balance (in USD)",
-        includeZero: false,
-        valueFormatString: "$##0.00",
-        crosshair: {
-          enabled: true,
-          snapToDataPoint: true,
-          labelFormatter: function (e) {
-            return "$" + CanvasJS.formatNumber(e.value, "##0.00");
-          }
-        }
+      title:{
+        text: textVal,
+        horizontalAlign: "center"
       },
       data: [{
         type: "doughnut",
@@ -88,7 +69,7 @@ export class ChartPaymentTypeComponent implements OnInit {
   setDataCards() {
     let dataPoints = new Array();
     let colorTYPE = new Array();
-    colorTYPE = ["#FF5733","#33FF5F","#33C5FF"];
+    colorTYPE = ["#371447","#CB3974","#8A3575"];
     let i = 0;
     this.dataCards.findByRecordType.forEach(paymentMeth => {
       if (paymentMeth[1] === "FlatFeeBillingRecord")

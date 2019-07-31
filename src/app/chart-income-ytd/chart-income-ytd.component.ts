@@ -30,15 +30,15 @@ export class ChartIncomeYtdComponent implements OnInit {
     });
     console.log("datapoints ", dataPoints);
     let defColor : String;
-    if (color === "red"){
-        defColor = "#FF5733";
-    }
-    else if (color === "green"){
-      defColor = "#33FF5F";
-    }
-    else if (color === "blue"){
-      defColor = "#33C5FF";
-    }
+    if (color === "blueberry"){
+      defColor = "#371447";
+  }
+  else if (color === "grape"){
+    defColor = "#CB3974";
+  }
+  else if (color === "grapefruit"){
+    defColor = "#8A3575";
+  }
     let chart = new CanvasJS.Chart(chartName, {
       animationEnabled: true,
       theme: "light",
@@ -124,7 +124,7 @@ export class ChartIncomeYtdComponent implements OnInit {
     
     });
 
-    this.createLineGraph(dataPointsIncome, "incomeYTD", "blue", "Income YTD");
+    this.createLineGraph(dataPointsIncome, "incomeYTD", "blueberry", "Income YTD");
 
   }
 

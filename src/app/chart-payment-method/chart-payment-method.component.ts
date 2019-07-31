@@ -49,7 +49,7 @@ export class ChartPaymentMethodComponent implements OnInit {
     	animationEnabled: true,
       title:{
         text: textVal,
-        horizontalAlign: "left"
+        horizontalAlign: "center"
       },
       data: [{
         type: "doughnut",
@@ -83,7 +83,8 @@ export class ChartPaymentMethodComponent implements OnInit {
     this.paymentMethod = this.dataCards.findByMethodType;
     console.log("payment method =======>",this.paymentMethod);
     let colorTYPE = new Array();
-    colorTYPE = ["#FF5733","#33FF5F","#33C5FF"];
+    // colorTYPE = ["#FF5733","#33FF5F","#33C5FF"];
+    colorTYPE = ["#371447","#CB3974","#8A3575"];
     let i = 0;
     for (let entry of this.paymentMethod){
       dataPoints.push({ y: entry[0], label: entry[1] , color: colorTYPE[i]});
