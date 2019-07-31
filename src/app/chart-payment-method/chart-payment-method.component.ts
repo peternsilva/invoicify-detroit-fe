@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { DataService } from '../data.service'
+import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component'
+import { fadeInAnimation } from '../animations/fade-in.animation';
+import { ActivatedRoute } from '@angular/router';
+
+import * as CanvasJS from '../../assets/canvasjs.min';
 
 @Component({
   selector: 'app-chart-payment-method',
@@ -7,9 +14,80 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChartPaymentMethodComponent implements OnInit {
 
-  constructor() { }
+  errorMessage: string;
+  successMessage: string;
+  invoices: any[];
+  dataCards: any;
+  title = 'canvasjs-angular';
+  paymentMethod: any;
+
+  constructor(
+    private dataService: DataService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.getDataCards();
   }
 
+  private createDonutGraph(dataPoints: any[], chartName: String, color: String, textVal: String) {
+    // dataPoints.sort((a, b) => {
+    //   return a.x.getTime() - b.x.getTime();
+    // });
+    console.log("datapoints ", dataPoints);
+    let defColor : String;
+    if (color === "red"){
+        defColor = "#FF5733";
+    }
+    else if (color === "green"){
+      defColor = "#33FF5F";
+    }
+    else if (color === "blue"){
+      defColor = "#33C5FF";
+    }
+    let chart = new CanvasJS.Chart(chartName, {
+    	animationEnabled: true,
+      title:{
+        text: textVal,
+        horizontalAlign: "left"
+      },
+      data: [{
+        type: "doughnut",
+        startAngle: 60,
+        innerRadius: 70,
+        indexLabelFontSize: 17,
+        indexLabel: "{label} - #percent%",
+        toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+        dataPoints: dataPoints
+      }]
+    });
+    chart.render();
+  }
+
+ 
+
+  getDataCards() {
+    this.dataService.getRecords("data/")
+      .subscribe((results) => {
+        this.dataCards = results;
+
+        this.setDataCards();
+        return this.dataCards = results;
+      }, error => { this.errorMessage = <any>error });
+
+  }
+
+  private setDataCards() {
+    //function to set the datacards we just grabbed
+    let dataPoints = new Array();
+    this.paymentMethod = this.dataCards.findByMethodType;
+    console.log("payment method =======>",this.paymentMethod);
+    for (let entry of this.paymentMethod){
+      dataPoints.push({ y: entry[0], label: entry[1] });
+      // console.log("entry of paymentmethod ---->",entry);
+    }
+    console.log("data points------>",dataPoints);
+    this.createDonutGraph(dataPoints, "paymentMethodChart","blue", "Payment Methods");
+    
+  }
 }

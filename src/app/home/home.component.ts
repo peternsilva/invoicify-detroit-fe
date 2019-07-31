@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   totalOutstandingAmount: number;
   numberOutstandingInvoices: number;
   numberPaidInvoices: number;
+  paymentMethod: any;
 
   constructor(private dataService: DataService) { }
 
@@ -32,8 +33,4 @@ export class HomeComponent implements OnInit {
         error => this.errorMessage = <any>error);
   }
 
-  // NOT NEEDED
-  setDataCards(results) {
-    console.log('results', results);
-  }
 }
