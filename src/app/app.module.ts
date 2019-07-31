@@ -30,11 +30,6 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { PaymentComponent } from './payment/payment.component';
 import { LandingPage1Component } from './landing-page1/landing-page1.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
-import { BalanceChart30dayComponent } from './balance-chart30day/balance-chart30day.component';
-import { BalanceChartYTDComponent } from './balance-chart-ytd/balance-chart-ytd.component';
-import { PaymentMethodChartComponent } from './payment-method-chart/payment-method-chart.component';
-import { PaymentTypeChartComponent } from './payment-type-chart/payment-type-chart.component';
-import { IncomeChartYTDComponent } from './income-chart-ytd/income-chart-ytd.component';
 
 
 @NgModule({
@@ -60,16 +55,6 @@ import { IncomeChartYTDComponent } from './income-chart-ytd/income-chart-ytd.com
     LandingPage1Component,
 
     AnalyticsComponent,
-
-    BalanceChart30dayComponent,
-
-    BalanceChartYTDComponent,
-
-    PaymentMethodChartComponent,
-
-    PaymentTypeChartComponent,
-
-    IncomeChartYTDComponent,
 
   ],
   imports: [
