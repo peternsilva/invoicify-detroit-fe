@@ -42,6 +42,9 @@ export class AnalyticsComponent implements OnInit {
     else if (color === "green"){
       defColor = "#33FF5F";
     }
+    else if (color === "blue"){
+      defColor = "#33C5FF";
+    }
     let chart = new CanvasJS.Chart(chartName, {
       animationEnabled: true,
       theme: "light",
@@ -78,46 +81,6 @@ export class AnalyticsComponent implements OnInit {
     chart.render();
   }
 
-  private create30DayLineGraph(dataPoints: any[], chartName: String) {
-    dataPoints.sort((a, b) => {
-      return a.x.getTime() - b.x.getTime();
-    });
-    console.log("datapoints ", dataPoints);
-
-    let chart = new CanvasJS.Chart(chartName, {
-      animationEnabled: true,
-      theme: "light2",
-      title: {
-        text: "Balance History (30 day)"
-      },
-      axisX: {
-        valueFormatString: "DD MMM YYYY",
-        crosshair: {
-          enabled: true,
-          snapToDataPoint: true
-        }
-      },
-      axisY: {
-        title: "Balance (in USD)",
-        includeZero: false,
-        valueFormatString: "$##0.00",
-        crosshair: {
-          enabled: true,
-          snapToDataPoint: true,
-          labelFormatter: function (e) {
-            return "$" + CanvasJS.formatNumber(e.value, "##0.00");
-          }
-        }
-      },
-      data: [{
-        type: "area",
-        xValueFormatString: "DD MMM YYYY",
-        yValueFormatString: "$##0.00",
-        dataPoints: dataPoints
-      }]
-    });
-    chart.render();
-  }
   getBalanceOnDate(balance_date: Date): number {
 
     let curBal = 0.0;
