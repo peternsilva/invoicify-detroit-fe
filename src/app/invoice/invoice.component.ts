@@ -63,10 +63,19 @@ export class InvoiceComponent implements OnInit {
     this.dataService.duplicateInvoice("invoice/duplicate", selectedInvoiceId).subscribe(
       results => this.duplicateResults = results,
       error => this.errorMessage = <any>error);  
+
+      var i;
+      for (i = 0; i < 25; i++) { 
+        this.getUnpaidInvoices();
+      }
   }
 
   trackByFn(index, item) {
     return index; 
+  }
+
+  continueExecution(){
+    /* Delay */
   }
 
   public makePDF()  
