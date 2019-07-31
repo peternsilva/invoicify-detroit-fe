@@ -17,6 +17,8 @@ import { PaymentComponent } from '../payment/payment.component';
 import { CompanyInfoComponent } from '../company-info/company-info.component';
 import { LandingPage1Component } from 'app/landing-page1/landing-page1.component';
 import { AnalyticsComponent } from 'app/analytics/analytics.component';
+import { ChartBalanceYtdComponent } from 'app/chart-balance-ytd/chart-balance-ytd.component';
+import { Chart30dayBalanceComponent } from 'app/chart-30day-balance/chart-30day-balance.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
@@ -24,6 +26,11 @@ const routes: Routes = [
   { path: 'home',  component: HomeComponent, canActivate: [AuthGuard]  },
   { path: 'company',  component: CompanyComponent, canActivate: [AuthGuard] },
   { path: 'company/id', component: CompanyInfoComponent, canActivate: [AuthGuard]},
+  // chart 30 days balance
+  { path: 'chart30daybalance', component: Chart30dayBalanceComponent},
+  // chart balance ytd
+  { path: 'chartbalanceytd', component: ChartBalanceYtdComponent},
+  //
   // analytic path
   { path: 'analytics', component: AnalyticsComponent},
   // adding company-info path 
