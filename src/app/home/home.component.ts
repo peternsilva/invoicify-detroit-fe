@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   totalOutstandingAmount: number;
   numberOutstandingInvoices: number;
   numberPaidInvoices: number;
+  paymentMethod: any;
 
   constructor(private dataService: DataService) { }
 
@@ -35,14 +36,15 @@ export class HomeComponent implements OnInit {
       }, error => { this.errorMessage = <any>error });
   }
   setDataCards() {
-    console.log(this.dataCards);
+    // console.log(this.dataCards);
     this.avgInvoiceAmount = this.dataCards.averageInvoiceAmount;
     this.avgTimeToPay = this.dataCards.findAverageTimeToPay;
     this.totalIncome = this.dataCards.findSumInitalBalance[0];
     this.totalOutstandingAmount = this.dataCards.findTotalOutstandingAmount[0];
     this.numberOutstandingInvoices = this.dataCards.findTotalOutstandingInvoices[0];
     this.numberPaidInvoices = this.dataCards.findTotalPaidInvoices[0];
+    this.paymentMethod = this.dataCards.findByMethodType;
     // this.
-    console.log(this);
+    console.log("payment method ====>",this.paymentMethod);
   }
 }
