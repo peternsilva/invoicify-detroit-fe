@@ -10,7 +10,7 @@
   
     <a class="btn btn-primary" routerLink="/invoice/add">Add Invoice</a>
 
-    <a *ngIf="selectedInvoiceId && selectedUnpaidInvoice" class="btn btn-primary" routerLink="/invoice/payment/add/{{selectedInvoiceId}}">Make Payment</a>
+    <a *ngIf="selectedInvoiceId && selectedUnpaidInvoice === true" class="btn btn-primary" routerLink="/invoice/payment/add/{{selectedInvoiceId}}">Make Payment</a>
 
     <a class="btn btn-primary" (click)="duplicateInvoice([selectedInvoiceId])">Duplicate Invoice</a>
 
