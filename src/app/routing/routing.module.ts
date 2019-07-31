@@ -47,7 +47,6 @@ const routes: Routes = [
   { path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard] },
   { path: 'invoice/payment/add/:id', component: PaymentFormComponent, canActivate: [AuthGuard] },
   { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
-  { path: 'analytics', component: AnalyticsComponent},
 
 ];
 

@@ -41,6 +41,8 @@ export class ChartPaymentTypeComponent implements OnInit {
       animationEnabled: true,
       title:{
         text: textVal,
+        fontFamily: "“Calibri, Optima, Candara, Verdana, Geneva, sans-serif”",
+        fontWeight: "bold",
         horizontalAlign: "center"
       },
       data: [{
