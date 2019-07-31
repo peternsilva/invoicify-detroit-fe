@@ -45,6 +45,6 @@ export class HomeComponent implements OnInit {
     this.numberPaidInvoices = this.dataCards.findTotalPaidInvoices[0];
     this.paymentMethod = this.dataCards.findByMethodType;
     // this.
-    console.log("payment method ====>",this.paymentMethod);
+    // console.log("payment method ====>",this.paymentMethod);
   }
 }
