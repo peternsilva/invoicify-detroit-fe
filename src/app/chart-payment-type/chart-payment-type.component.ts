@@ -87,15 +87,19 @@ export class ChartPaymentTypeComponent implements OnInit {
   }
   setDataCards() {
     let dataPoints = new Array();
+    let colorTYPE = new Array();
+    colorTYPE = ["#FF5733","#33FF5F","#33C5FF"];
+    let i = 0;
     this.dataCards.findByRecordType.forEach(paymentMeth => {
       if (paymentMeth[1] === "FlatFeeBillingRecord")
         paymentMeth[1] = "Flat Fee"
       else
         paymentMeth[1] = "Rate Based"
-      dataPoints.push({ y: paymentMeth[0], label:paymentMeth[1]})
+      dataPoints.push({ y: paymentMeth[0], label:paymentMeth[1], color: colorTYPE[i]});
+      i = i+1;
     });
     console.log("dataPoints----",dataPoints);
-    this.createDonutGraph(dataPoints, "paymentMethChart","blue", "Payment Method");
+    this.createDonutGraph(dataPoints, "paymentMethChart","blue", "Payment Type");
 
   }
 

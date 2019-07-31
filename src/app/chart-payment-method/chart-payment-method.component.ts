@@ -82,9 +82,13 @@ export class ChartPaymentMethodComponent implements OnInit {
     let dataPoints = new Array();
     this.paymentMethod = this.dataCards.findByMethodType;
     console.log("payment method =======>",this.paymentMethod);
+    let colorTYPE = new Array();
+    colorTYPE = ["#FF5733","#33FF5F","#33C5FF"];
+    let i = 0;
     for (let entry of this.paymentMethod){
-      dataPoints.push({ y: entry[0], label: entry[1] });
+      dataPoints.push({ y: entry[0], label: entry[1] , color: colorTYPE[i]});
       // console.log("entry of paymentmethod ---->",entry);
+      i = i+1;
     }
     console.log("data points------>",dataPoints);
     this.createDonutGraph(dataPoints, "paymentMethodChart","blue", "Payment Methods");
