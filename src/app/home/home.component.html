@@ -1,64 +1,65 @@
 <section @fadeInAnimation>
 
-  
-  
-        <!-- START THE FEATURETTES -->
-        <h1>Invoice Analytics</h1>
-  
-        <div class = "cardbox">
-  
-            <div class="col-md-4 card" id= "card1">
-              <p id="ptitle">Avg. Invoice Amount</p>
-              <p id="pnum">19090</p>
-            </div>
 
-            <div class="col-md-4 card" id= "card2">
-              <p id="ptitle">Total Outstanding Amt.</p>
-              <p id="pnum">19090</p>
-            </div>
 
-            <div class="col-md-4 card" id= "card3">
-                <p id="ptitle">Avg. Time to Pay</p>
-                <p id="pnum">19090</p>
-            </div>
-                
+  <!-- START THE FEATURETTES -->
+  <h1>Invoice Analytics</h1>
 
-    
-  
-              <div class="col-md-12 card" id= "card4">
-                <p id="ptitle">Total Income</p>
-                <p id="pnum">19090</p>
-              </div>
-  
-              <div class="col-md-12 card" id= "card5">
-                  <p id="ptitle">Total # Outstanding</p>
-                  <p id="pnum">19090</p>
-                </div>
-  
-              <div class="col-md-6 card" id= "card6">
-                    <p id="ptitle">Total Number Paid</p>
-                    <p id="pnum">19090</p>
-                </div>
-            </div>
-  
-        <div class = "graphbox">
-  
-            <div class="col-md-6">
-              <img src="http://gatewaysat.com/wp-content/uploads/2015/02/college-icon-300x300.png" alt="Generic placeholder image">
-            </div>
+  <div class="cardbox">
 
-          <div class="col-md-6">
-            <img src="https://www.collegeraptor.com/wp/wp-content/uploads/2016/07/Minors-300x300.png" alt="Generic placeholder image">
-          </div>
-     
-            <div class="col-md-6">
-              <img src="https://www.collegeraptor.com/wp/wp-content/uploads/2016/07/Minors-300x300.png" alt="Generic placeholder image">
-            </div>
+    <div class="col-md-4 card" id="card1">
+      <p id="ptitle">Avg. Invoice Amount</p>
+      <p id="pnum">${{dataCards?.avergeInvoiceAmount | number:'1.2-2'}}</p>
+    </div>
 
-          <div class="col-md-6">
-            <img src="http://knavigators.com/wp-content/uploads/2016/07/college_admissions_counseling_qa-300x300.jpg" alt="Generic placeholder image">
-          </div>
-        </div>
-  
-        <!-- /END THE FEATURETTES -->
-  </section>
+    <div class="col-md-4 card" id="card2">
+      <p id="ptitle">Total Outstanding Amount</p>
+      <p id="pnum">${{dataCards?.findTotalOutstandingAmount[0] | number:'1.2-2'}}</p>
+    </div>
+
+    <div class="col-md-4 card" id="card3">
+      <p id="ptitle">Avg. Time to Pay</p>
+      <p id="pnum">{{dataCards?.findAverageTimeToPay | number:'1.2-2'}} days</p>
+    </div>
+
+    <div class="col-md-12 card" id="card4">
+      <p id="ptitle">Total Income</p>
+      <p id="pnum">${{dataCards?.findSumInitalBalance[0] | number:'1.2-2'}}</p>
+    </div>
+
+    <div class="col-md-12 card" id="card5">
+      <p id="ptitle">Total # Outstanding</p>
+      <p id="pnum">{{dataCards?.findTotalOutstandingInvoices[0]}}</p>
+    </div>
+
+    <div class="col-md-6 card" id="card6">
+      <p id="ptitle">Total # Paid</p>
+      <p id="pnum">{{dataCards?.findTotalPaidInvoices[0]}}</p>
+    </div>
+  </div>
+
+  <div class="graphbox">
+
+    <div class="col-md-6">
+      <img src="http://gatewaysat.com/wp-content/uploads/2015/02/college-icon-300x300.png"
+        alt="Generic placeholder image">
+    </div>
+
+    <div class="col-md-6">
+      <img src="https://www.collegeraptor.com/wp/wp-content/uploads/2016/07/Minors-300x300.png"
+        alt="Generic placeholder image">
+    </div>
+
+    <div class="col-md-6">
+      <img src="https://www.collegeraptor.com/wp/wp-content/uploads/2016/07/Minors-300x300.png"
+        alt="Generic placeholder image">
+    </div>
+
+    <div class="col-md-6">
+      <img src="http://knavigators.com/wp-content/uploads/2016/07/college_admissions_counseling_qa-300x300.jpg"
+        alt="Generic placeholder image">
+    </div>
+  </div>
+
+  <!-- /END THE FEATURETTES -->
+</section>

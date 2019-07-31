@@ -26,22 +26,14 @@ export class HomeComponent implements OnInit {
     this.getDataCards();
   }
   getDataCards() {
-    this.dataService.getRecords("data/")
-      .subscribe((results) => {
-        this.dataCards = results;
-
-        this.setDataCards();
-        return this.dataCards = results;
-      }, error => { this.errorMessage = <any>error });
+    this.dataService.getRecords("data")
+      .subscribe(
+        results => this.dataCards = results, 
+        error => this.errorMessage = <any>error);
   }
-  setDataCards() {
-    console.log(this.dataCards);
-    this.avgInvoiceAmount = this.dataCards.averageInvoiceAmount;
-    this.avgTimeToPay = this.dataCards.findAverageTimeToPay;
-    this.totalIncome = this.dataCards.findSumInitalBalance[0];
-    this.totalOutstandingAmount = this.dataCards.findTotalOutstandingAmount[0];
-    this.numberOutstandingInvoices = this.dataCards.findTotalOutstandingInvoices[0];
-    this.numberPaidInvoices = this.dataCards.findTotalPaidInvoices[0];
-    // this.
+
+  // NOT NEEDED
+  setDataCards(results) {
+    console.log('results', results);
   }
 }
