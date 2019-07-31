@@ -57,9 +57,6 @@ export class InvoiceComponent implements OnInit {
   }
 
   duplicateInvoice(selectedInvoiceId) {
-    console.log("inside duplicate invoice")
-    console.log(selectedInvoiceId)
-
     this.dataService.duplicateInvoice("invoice/duplicate", selectedInvoiceId).subscribe(
       results => this.duplicateResults = results,
       error => this.errorMessage = <any>error);  
