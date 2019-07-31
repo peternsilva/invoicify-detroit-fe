@@ -81,35 +81,87 @@ export class AnalyticsComponent implements OnInit {
     chart.render();
   }
 
+
+  private createDonutGraph(dataPoints: any[], chartName: String, color: String, textVal: String) {
+    dataPoints.sort((a, b) => {
+      return a.x.getTime() - b.x.getTime();
+    });
+    console.log("datapoints ", dataPoints);
+    let defColor : String;
+    if (color === "red"){
+        defColor = "#FF5733";
+    }
+    else if (color === "green"){
+      defColor = "#33FF5F";
+    }
+    else if (color === "blue"){
+      defColor = "#33C5FF";
+    }
+    let chart = new CanvasJS.Chart(chartName, {
+      animationEnabled: true,
+      theme: "light",
+      title: {
+        text: textVal
+      },
+      axisX: {
+        valueFormatString: "DD MMM YYYY",
+        crosshair: {
+          enabled: true,
+          snapToDataPoint: true
+        }
+      },
+      axisY: {
+        title: "Balance (in USD)",
+        includeZero: false,
+        valueFormatString: "$##0.00",
+        crosshair: {
+          enabled: true,
+          snapToDataPoint: true,
+          labelFormatter: function (e) {
+            return "$" + CanvasJS.formatNumber(e.value, "##0.00");
+          }
+        }
+      },
+      data: [{
+        type: "doughnut",
+        color: defColor,
+        xValueFormatString: "DD MMM YYYY",
+        yValueFormatString: "$##0.00",
+        dataPoints: dataPoints
+      }]
+    });
+    chart.render();
+  }
+
   getBalanceOnDate(balance_date: Date): number {
 
     let curBal = 0.0;
     this.invoices.forEach(invoice => {
-      console.log("paid on ", invoice.paidOn);
+      // console.log("paid on ", invoice.paidOn);
       if (!invoice.paidOn) {
         curBal += invoice.initialBalance;
       }
       else if (new Date(invoice.paidOn) > balance_date) {
-        console.log("initial balance", invoice.initialBalance);
+        // console.log("initial balance", invoice.initialBalance);
         curBal += invoice.initialBalance;
       }
 
     });
-    console.log(curBal);
+    // console.log(curBal);
     return curBal;
   }
   getIncomeOnDate(balance_date: Date): number {
 
     let curBal = 0.0;
     this.invoices.forEach(invoice => {
-      console.log("paid on ", invoice.paidOn);
+      // console.log("paid on ", invoice.paidOn);
       if (invoice.paidOn && new Date(invoice.paidOn) <= balance_date) {
-        console.log("initial balance", invoice.initialBalance);
+        // console.log("initial balance", invoice.initialBalance);
         curBal += invoice.initialBalance;
       }
 
     });
-    console.log(curBal);
+    // console.log(curBal);
     return curBal;
   }
 
@@ -134,12 +186,13 @@ export class AnalyticsComponent implements OnInit {
       }, error => { this.errorMessage = <any>error });
 
   }
-
+  
   private getDataAndGraph() {
+    console.log("get data cards ==>",this.dataCards);
     let dates_to_check = new Array();
-    console.log(this.invoices);
+    // console.log(this.invoices);
     this.invoices.forEach(invoice => {
-      console.log(new Date(invoice.createdOn));
+      // console.log(new Date(invoice.createdOn));
       dates_to_check.push(new Date(invoice.createdOn));
       if (invoice.paidOn) {
         dates_to_check.push(new Date(invoice.paidOn));
@@ -163,12 +216,13 @@ export class AnalyticsComponent implements OnInit {
         let income_on_date = this.getIncomeOnDate(date);
         dataPointsIncome.push({x: date, y: income_on_date});
       } 
-
+    
     });
 
     this.createLineGraph(dataPointsIncome, "incomeYTD", "blue", "Income YTD");
     this.createLineGraph(dataPoints, "chartContainer","red", "Balance History");
     this.createLineGraph(dataPoints30day, "30dayChart","green", "30 Days Balance History");
+    this.createDonutGraph(dataPoints30day, "30dayChart","blue", "DONUT CHART");
 
   }
 
