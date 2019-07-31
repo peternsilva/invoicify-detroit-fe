@@ -74,10 +74,6 @@ export class InvoiceComponent implements OnInit {
     return index; 
   }
 
-  continueExecution(){
-    /* Delay */
-  }
-
   public makePDF()  
   {  
     var data = document.getElementById('PDFify-Unpaid'); 
