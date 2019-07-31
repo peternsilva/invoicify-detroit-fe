@@ -1,65 +1,67 @@
 <section @fadeInAnimation>
 
-  
-  
-        <!-- START THE FEATURETTES -->
-        <h1>Invoice Analytics</h1>
-  
-        <div class = "cardbox">
-  
-            <div class="col-md-4 card" id= "card1">
-              <p id="ptitle">Avg. Invoice Amount</p>
-              <p id="pnum">19090</p>
-            </div>
 
-            <div class="col-md-4 card" id= "card2">
-              <p id="ptitle">Total Outstanding Amt.</p>
-              <p id="pnum">19090</p>
-            </div>
 
-            <div class="col-md-4 card" id= "card3">
-                <p id="ptitle">Avg. Time to Pay</p>
-                <p id="pnum">19090</p>
-            </div>
-                
+  <!-- START THE FEATURETTES -->
+  <h1>Invoice Analytics</h1>
+
+  <div class="cardbox">
+
+    <div class="col-md-4 card" id="card1">
+      <p id="ptitle">Avg. Invoice Amount</p>
+      <p id="pnum">${{dataCards?.avergeInvoiceAmount | number:'1.2-2'}}</p>
+    </div>
+
+    <div class="col-md-4 card" id="card2">
+      <p id="ptitle">Total Outstanding Amount</p>
+      <p id="pnum">${{dataCards?.findTotalOutstandingAmount[0] | number:'1.2-2'}}</p>
+    </div>
+
+    <div class="col-md-4 card" id="card3">
+      <p id="ptitle">Avg. Time to Pay</p>
+      <p id="pnum">{{dataCards?.findAverageTimeToPay | number:'1.2-2'}} days</p>
+    </div>
+
+    <div class="col-md-12 card" id="card4">
+      <p id="ptitle">Total Income</p>
+      <p id="pnum">${{dataCards?.findSumInitalBalance[0] | number:'1.2-2'}}</p>
+    </div>
+
+    <div class="col-md-12 card" id="card5">
+      <p id="ptitle">Total # Outstanding</p>
+      <p id="pnum">{{dataCards?.findTotalOutstandingInvoices[0]}}</p>
+    </div>
+
+    <div class="col-md-6 card" id="card6">
+      <p id="ptitle">Total # Paid</p>
+      <p id="pnum">{{dataCards?.findTotalPaidInvoices[0]}}</p>
+    </div>
+  </div>
+
+  <div class = "graphbox">
+
+      <div class="col-md-6">
+        <app-chart-income-ytd></app-chart-income-ytd>
+      </div>
+
+    <div class="col-md-6">
+      <!-- <app-chart-payment-method></app-chart-payment-method> -->
+      <app-chart-balance-ytd></app-chart-balance-ytd>
+    </div>
+
+      <div class="col-md-6">
+        <app-chart-30day-balance></app-chart-30day-balance>
+      </div>
+
+    <div class="col-md-6">
+      <app-chart-payment-method></app-chart-payment-method>
+    </div>
 
     
-  
-              <div class="col-md-12 card" id= "card4">
-                <p id="ptitle">Total Income</p>
-                <p id="pnum">19090</p>
-              </div>
-  
-              <div class="col-md-12 card" id= "card5">
-                  <p id="ptitle">Total # Outstanding</p>
-                  <p id="pnum">19090</p>
-                </div>
-  
-              <div class="col-md-6 card" id= "card6">
-                    <p id="ptitle">Total Number Paid</p>
-                    <p id="pnum">19090</p>
-                </div>
-            </div>
-  
-        <div class = "graphbox">
-  
-            <div class="col-md-6">
-              <app-chart-income-ytd></app-chart-income-ytd>
-            </div>
+    <div class="col-md-6">
+      <app-chart-payment-type></app-chart-payment-type>
+    </div>
+  </div>
 
-          <div class="col-md-6">
-            <!-- <app-chart-payment-method></app-chart-payment-method> -->
-            <app-chart-balance-ytd></app-chart-balance-ytd>
-          </div>
-     
-            <div class="col-md-6">
-              <app-chart-30day-balance></app-chart-30day-balance>
-            </div>
-
-          <div class="col-md-6">
-            <app-chart-payment-type></app-chart-payment-type>
-          </div>
-        </div>
-  
-        <!-- /END THE FEATURETTES -->
+  <!-- /END THE FEATURETTES -->
   </section>
