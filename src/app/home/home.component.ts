@@ -43,5 +43,6 @@ export class HomeComponent implements OnInit {
     this.numberOutstandingInvoices = this.dataCards.findTotalOutstandingInvoices[0];
     this.numberPaidInvoices = this.dataCards.findTotalPaidInvoices[0];
     // this.
+    console.log(this);
   }
 }
