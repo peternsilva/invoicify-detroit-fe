@@ -25,7 +25,7 @@ export class NavigationComponent implements OnInit {
     this.authService.logout().subscribe(
       success=> {
         this.refreshUser();
-        this.router.navigate(["home"])
+        this.router.navigate(["landing"])
       } 
     );
   }

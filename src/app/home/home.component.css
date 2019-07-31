@@ -1,6 +1,6 @@
 h1 {
     text-align: center;
-    font-size: 5em;
+    font-size: 30px;
 }
 
 .graphbox {
@@ -35,13 +35,12 @@ h1 {
 }
 
 #pnum{
-    font-size: 3em;
+    font-size: 3.2em;
     overflow-wrap: break-word;
     text-align: center;
     vertical-align: middle;
     padding-top: .5em;
-    font-weight: bold;
-    font-family: arial;
+    font-family: "Verdana", sans-serif;
 }
 
 #ptitle{
@@ -49,6 +48,7 @@ h1 {
     overflow-wrap: break-word;
     text-align: center;
     height:2em;
+    font-family: "Verdana", sans-serif;
 }
 
 #card1 {
@@ -58,7 +58,7 @@ h1 {
 
 #card2 {
     background-color:white;
-    color:  #650360;
+    color:  black;
 }
 
 #card3 {
@@ -68,7 +68,7 @@ h1 {
 
 #card4 {
     background-color: white;
-    color:  #650360;
+    color: black;
 }
 
 #card5 {
@@ -78,5 +78,5 @@ h1 {
 
 #card6 {
     background-color:white;
-    color:  #650360;
+    color:  black;
 }
