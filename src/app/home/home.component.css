@@ -19,25 +19,23 @@
 
 }
 
+
 .card{
     
     border: 2px solid black;
-    padding: 3em 6em;
-    margin-right: .5em; 
-    margin-top: 5em;
-}
-
-
-
-.card2{
-    
-    border: 2px solid black;
-    padding: 4em 7.8em;
+    padding: 1em 1em;
+    margin: 0.5em;
     /* margin-left: .5em; */
-    margin-top: .5em;
 }
 
-p{
-    font-size: 16px;
+#pnum{
+    font-size: 3em;
     overflow-wrap: break-word;
+    text-align:center;
+}
+
+#ptitle{
+    font-size: 2em;
+    overflow-wrap: break-word;
+    text-align:center;
 }
