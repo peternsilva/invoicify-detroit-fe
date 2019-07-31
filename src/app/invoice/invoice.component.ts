@@ -21,6 +21,7 @@ export class InvoiceComponent implements OnInit {
   invoices: any[];
   unpaidInvoices: any[];
   paidInvoices: any[];
+  duplicateResults: any[];
 
   constructor (private dataService: DataService) {}
 
@@ -54,6 +55,21 @@ export class InvoiceComponent implements OnInit {
 
   onSelectionChange(invoiceId) {
       this.selectedInvoiceId = invoiceId;
+  }
+
+  duplicateInvoice(selectedInvoiceId) {
+    this.dataService.duplicateInvoice("invoice/duplicate", selectedInvoiceId).subscribe(
+      results => this.duplicateResults = results,
+      error => this.errorMessage = <any>error);  
+
+      var i;
+      for (i = 0; i < 25; i++) { 
+        this.getUnpaidInvoices();
+      }
+  }
+
+  trackByFn(index, item) {
+    return index; 
   }
 
   public makePDF()  

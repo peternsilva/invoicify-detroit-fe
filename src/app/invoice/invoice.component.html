@@ -12,6 +12,9 @@
 
     <a *ngIf="selectedInvoiceId" class="btn btn-primary" routerLink="/invoice/payment/add/{{selectedInvoiceId}}">Make Payment</a>
 
+    <a class="btn btn-primary" (click)="duplicateInvoice([selectedInvoiceId])">Duplicate Invoice</a>
+
+
     <input type="button" class="btn btn-primary" value="PDFify" (click)="makePDF()"/>
     <div id="PDFify-Unpaid">
 
@@ -30,7 +33,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let invoice of unpaidInvoices">
+        <tr *ngFor="let invoice of unpaidInvoices; trackBy: trackByFn">
 
           <td>
               <input ngModel ="ngModel" type="radio" name="radiogroup" 
