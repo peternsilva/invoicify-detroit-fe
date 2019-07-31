@@ -42,6 +42,9 @@ export class AnalyticsComponent implements OnInit {
     else if (color === "green"){
       defColor = "#33FF5F";
     }
+    else if (color === "blue"){
+      defColor = "#33C5FF";
+    }
     let chart = new CanvasJS.Chart(chartName, {
       animationEnabled: true,
       theme: "light",
