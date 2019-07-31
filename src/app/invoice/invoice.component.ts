@@ -18,6 +18,7 @@ export class InvoiceComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   selectedInvoiceId = 0;
+  selectedUnpaidInvoice: boolean = false;
   invoices: any[];
   unpaidInvoices: any[];
   paidInvoices: any[];
@@ -53,9 +54,15 @@ export class InvoiceComponent implements OnInit {
   }
 
 
-  onSelectionChange(invoiceId) {
+  onSelectionChangeUnpaid(invoiceId) {
       this.selectedInvoiceId = invoiceId;
+      this.selectedUnpaidInvoice = true;
   }
+
+  onSelectionChangePaid(invoiceId) {
+    this.selectedInvoiceId = invoiceId;
+    this.selectedUnpaidInvoice = false;
+}
 
   duplicateInvoice(selectedInvoiceId) {
     this.dataService.duplicateInvoice("invoice/duplicate", selectedInvoiceId).subscribe(

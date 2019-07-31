@@ -10,7 +10,7 @@
   
     <a class="btn btn-primary" routerLink="/invoice/add">Add Invoice</a>
 
-    <a *ngIf="selectedInvoiceId" class="btn btn-primary" routerLink="/invoice/payment/add/{{selectedInvoiceId}}">Make Payment</a>
+    <a *ngIf="selectedInvoiceId && selectedUnpaidInvoice" class="btn btn-primary" routerLink="/invoice/payment/add/{{selectedInvoiceId}}">Make Payment</a>
 
     <a class="btn btn-primary" (click)="duplicateInvoice([selectedInvoiceId])">Duplicate Invoice</a>
 
@@ -39,7 +39,7 @@
               <input ngModel ="ngModel" type="radio" name="radiogroup" 
               [checked]="idx === 0"
               [value]="invoice.id"
-              (change)="onSelectionChange(invoice.id)"
+              (change)="onSelectionChangeUnpaid(invoice.id)"
               >
           </td>
           <td>{{invoice.id}}</td>
@@ -60,6 +60,7 @@
       <caption>Paid Invoices</caption>
         <thead>
           <tr>
+            <th> </th>
             <th>ID</th>
             <th>Description</th>
             <th>Client</th>
@@ -71,6 +72,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let invoice of paidInvoices">
+              <td>
+                  <input ngModel ="ngModel" type="radio" name="radiogroup" 
+                  [checked]="idx === 0"
+                  [value]="invoice.id"
+                  (change)="onSelectionChangePaid(invoice.id)"
+                  >
+              </td>  
               <td>{{invoice.id}}</td>
               <td>{{invoice.invoiceDescription}}</td>
               <td>{{invoice.company.name}}</td>
