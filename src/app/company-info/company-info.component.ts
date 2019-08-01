@@ -64,7 +64,7 @@ export class CompanyInfoComponent implements OnInit {
 			},
 			data: [{
 				type: "area",
-				color: "#CB3974",
+				color: "#371447",
 				xValueFormatString: "DD MMM YYYY",
 				yValueFormatString: "$##0.00",
 				dataPoints: dataPoints
