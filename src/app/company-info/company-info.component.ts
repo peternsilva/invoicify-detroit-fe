@@ -41,8 +41,7 @@ export class CompanyInfoComponent implements OnInit {
 			title: {
 				text: "Balance History",
 				fontFamily: "Helvetica",
-				fontWeight: "bold",
-				fontStretch:"condensed"
+				fontWeight: "bold"
 			},
 			axisX: {
 				valueFormatString: "DD MMM YYYY",
