@@ -81,6 +81,11 @@ export class DataService {
             .map(this.extractData);
     }
 
+    duplicateInvoice(endpoint: string, id:number): Observable<any[]> {
+        let apiUrl = `${this.baseUrl}${endpoint}/${id}`;    
+        console.log(apiUrl);   
+        return this.http.get(apiUrl, this.options).map(this.extractData).catch(this.handleError);
+    }
 
     private extractData(res: Response) {
         let results = res.json();
@@ -94,7 +99,7 @@ export class DataService {
             try {
                 errMsg = JSON.parse(error._body).message
                 if(errMsg.includes("ConstraintViolationException")){
-                    errMsg = "Cannot delete record because it has related to other records."
+                    errMsg = "Cannot delete company because it has related billing records."
                 }
             } catch (error) {
                 errMsg = error._body;
