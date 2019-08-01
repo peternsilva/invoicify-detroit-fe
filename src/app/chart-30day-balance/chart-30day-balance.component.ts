@@ -1,36 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-chart-30day-balance',
-//   templateUrl: './chart-30day-balance.component.html',
-//   styleUrls: ['./chart-30day-balance.component.css']
-// })
-// export class Chart30dayBalanceComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
-
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-chart-balance-ytd',
-//   templateUrl: './chart-balance-ytd.component.html',
-//   styleUrls: ['./chart-balance-ytd.component.css']
-// })
-// export class ChartBalanceYtdComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
-
-
 import { Component, OnInit, Input } from '@angular/core';
 
 import { DataService } from '../data.service'
@@ -119,86 +86,33 @@ export class Chart30dayBalanceComponent implements OnInit {
   }
 
 
-  // private createDonutGraph(dataPoints: any[], chartName: String, color: String, textVal: String) {
-  //   dataPoints.sort((a, b) => {
-  //     return a.x.getTime() - b.x.getTime();
-  //   });
-  //   console.log("datapoints ", dataPoints);
-  //   let defColor : String;
-  //   if (color === "red"){
-  //       defColor = "#FF5733";
-  //   }
-  //   else if (color === "green"){
-  //     defColor = "#33FF5F";
-  //   }
-  //   else if (color === "blue"){
-  //     defColor = "#33C5FF";
-  //   }
-  //   let chart = new CanvasJS.Chart(chartName, {
-  //     animationEnabled: true,
-  //     theme: "light",
-  //     title: {
-  //       text: textVal
-  //     },
-  //     axisX: {
-  //       valueFormatString: "DD MMM YYYY",
-  //       crosshair: {
-  //         enabled: true,
-  //         snapToDataPoint: true
-  //       }
-  //     },
-  //     axisY: {
-  //       title: "Balance (in USD)",
-  //       includeZero: false,
-  //       valueFormatString: "$##0.00",
-  //       crosshair: {
-  //         enabled: true,
-  //         snapToDataPoint: true,
-  //         labelFormatter: function (e) {
-  //           return "$" + CanvasJS.formatNumber(e.value, "##0.00");
-  //         }
-  //       }
-  //     },
-  //     data: [{
-  //       type: "doughnut",
-  //       color: defColor,
-  //       xValueFormatString: "DD MMM YYYY",
-  //       yValueFormatString: "$##0.00",
-  //       dataPoints: dataPoints
-  //     }]
-  //   });
-  //   chart.render();
-  // }
-
   getBalanceOnDate(balance_date: Date): number {
 
     let curBal = 0.0;
     this.invoices.forEach(invoice => {
-      // console.log("paid on ", invoice.paidOn);
+
       if (!invoice.paidOn) {
         curBal += invoice.initialBalance;
       }
       else if (new Date(invoice.paidOn) > balance_date) {
-        // console.log("initial balance", invoice.initialBalance);
+
         curBal += invoice.initialBalance;
       }
 
     });
-    // console.log(curBal);
     return curBal;
   }
   getIncomeOnDate(balance_date: Date): number {
 
     let curBal = 0.0;
     this.invoices.forEach(invoice => {
-      // console.log("paid on ", invoice.paidOn);
       if (invoice.paidOn && new Date(invoice.paidOn) <= balance_date) {
-        // console.log("initial balance", invoice.initialBalance);
+       
         curBal += invoice.initialBalance;
       }
 
     });
-    // console.log(curBal);
+
     return curBal;
   }
 
@@ -227,9 +141,9 @@ export class Chart30dayBalanceComponent implements OnInit {
   private getDataAndGraph() {
     console.log("get data cards ==>",this.dataCards);
     let dates_to_check = new Array();
-    // console.log(this.invoices);
+    
     this.invoices.forEach(invoice => {
-      // console.log(new Date(invoice.createdOn));
+    
       dates_to_check.push(new Date(invoice.createdOn));
       if (invoice.paidOn) {
         dates_to_check.push(new Date(invoice.paidOn));
@@ -239,7 +153,7 @@ export class Chart30dayBalanceComponent implements OnInit {
       return a.getTime() - b.getTime();
     });
     console.log("sorted dates --> ", dates_to_check);
-    // console.log("RESULTS---->", results);
+
     let dataPoints = new Array();
     let dataPoints30day = new Array();
     let dataPointsIncome = new Array();
@@ -256,10 +170,7 @@ export class Chart30dayBalanceComponent implements OnInit {
     
     });
 
-    // this.createLineGraph(dataPointsIncome, "incomeYTD", "blue", "Income YTD");
-    // this.createLineGraph(dataPoints, "chartContainer","red", "Balance History");
     this.createLineGraph(dataPoints30day, "30dayChart","grapefruit", "30 Day Balance History");
-    // this.createDonutGraph(dataPoints30day, "30dayChart","blue", "DONUT CHART");
 
   }
 
