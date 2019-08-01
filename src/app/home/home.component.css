@@ -1,7 +1,7 @@
 h1 {
     text-align: center;
-    font-size: 30px;
-    font-family: Helvetica, Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    font-family:"Helvetica", Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
@@ -19,7 +19,7 @@ h1 {
 .cardbox{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 4em;    
     margin-left: -5em;
     flex-wrap: wrap;
@@ -81,4 +81,8 @@ h1 {
 #card6 {
     background-color:white;
     color:  black;
+}
+
+#graph{
+    margin-bottom: 4em;
 }
