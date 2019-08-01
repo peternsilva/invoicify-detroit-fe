@@ -49,7 +49,9 @@ export class ChartPaymentMethodComponent implements OnInit {
     	animationEnabled: true,
       title:{
         text: textVal,
-        horizontalAlign: "center"
+        horizontalAlign: "center",
+				fontFamily: "Helvetica",
+				fontWeight: "bold"
       },
       data: [{
         type: "doughnut",
@@ -92,7 +94,7 @@ export class ChartPaymentMethodComponent implements OnInit {
       i = i+1;
     }
     console.log("data points------>",dataPoints);
-    this.createDonutGraph(dataPoints, "paymentMethodChart","blue", "Payment Methods");
+    this.createDonutGraph(dataPoints, "paymentMethodChart","blue", "Payment Method");
     
   }
 }

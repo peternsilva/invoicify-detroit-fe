@@ -84,7 +84,9 @@ export class Chart30dayBalanceComponent implements OnInit {
       animationEnabled: true,
       theme: "light",
       title: {
-        text: textVal
+        text: textVal,
+        fontFamily: "Helvetica",
+        fontWeight: "bold"
       },
       axisX: {
         valueFormatString: "DD MMM YYYY",
@@ -256,7 +258,7 @@ export class Chart30dayBalanceComponent implements OnInit {
 
     // this.createLineGraph(dataPointsIncome, "incomeYTD", "blue", "Income YTD");
     // this.createLineGraph(dataPoints, "chartContainer","red", "Balance History");
-    this.createLineGraph(dataPoints30day, "30dayChart","grapefruit", "30 Days Balance History");
+    this.createLineGraph(dataPoints30day, "30dayChart","grapefruit", "30 Day Balance History");
     // this.createDonutGraph(dataPoints30day, "30dayChart","blue", "DONUT CHART");
 
   }

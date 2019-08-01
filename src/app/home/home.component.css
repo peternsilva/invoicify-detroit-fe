@@ -1,6 +1,8 @@
 h1 {
     text-align: center;
     font-size: 30px;
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 .graphbox {

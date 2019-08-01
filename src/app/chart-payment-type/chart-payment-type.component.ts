@@ -41,7 +41,9 @@ export class ChartPaymentTypeComponent implements OnInit {
       animationEnabled: true,
       title:{
         text: textVal,
-        horizontalAlign: "center"
+        horizontalAlign: "center",
+				fontFamily: "Helvetica",
+				fontWeight: "bold"
       },
       data: [{
         type: "doughnut",

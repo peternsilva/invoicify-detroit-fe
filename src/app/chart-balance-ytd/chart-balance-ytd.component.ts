@@ -61,7 +61,10 @@ export class ChartBalanceYtdComponent implements OnInit {
       animationEnabled: true,
       theme: "light",
       title: {
-        text: textVal
+        text: textVal,
+        fontFamily: "Helvetica",
+        fontWeight: "bold",
+				fontStretch:"condensed"
       },
       axisX: {
         valueFormatString: "DD MMM YYYY",

@@ -43,7 +43,9 @@ export class ChartIncomeYtdComponent implements OnInit {
       animationEnabled: true,
       theme: "light",
       title: {
-        text: textVal
+        text: textVal,
+        fontFamily: "Helvetica",
+        fontWeight: "bold"
       },
       axisX: {
         valueFormatString: "DD MMM YYYY",

@@ -39,7 +39,10 @@ export class CompanyInfoComponent implements OnInit {
 			animationEnabled: true,
 			theme: "light2",
 			title: {
-				text: "Balance History"
+				text: "Balance History",
+				fontFamily: "Helvetica",
+				fontWeight: "bold",
+				fontStretch:"condensed"
 			},
 			axisX: {
 				valueFormatString: "DD MMM YYYY",
